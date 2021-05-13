@@ -1,0 +1,223 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "享指特快",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/index/address",
+			"style": {
+				"navigationBarTitleText": "临时地址"
+			}
+		},
+		{
+			"path": "pages/index/chooseAddress",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "用户登录"
+			}
+		},
+		{
+			"path": "pages/login/inputPhone",
+			"style": {
+				"navigationBarTitleText": "输入手机号码"
+			}
+		},
+		{
+			"path": "pages/login/inputCode",
+			"style": {
+				"navigationBarTitleText": "输入验证码"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "用户中心"
+			}
+		},
+		{
+			"path": "pages/mine/orderList",
+			"style": {
+				"navigationBarTitleText": "订单中心"
+			}
+		},
+		{
+			"path": "pages/mine/wallet",
+			"style": {
+				"navigationBarTitleText": "我的钱包"
+			}
+		},
+		{
+			"path": "pages/mine/residualList",
+			"style": {
+				"navigationBarTitleText": "余额明细"
+			}
+		},
+		{
+			"path": "pages/mine/payPassword",
+			"style": {
+				"navigationBarTitleText": "修改支付密码"
+			}
+		},
+		{
+			"path": "pages/mine/addressList",
+			"style": {
+				"navigationBarTitleText": "常用地址"
+			}
+		},
+		{
+			"path": "pages/mine/addressEdit",
+			"style": {
+				"navigationBarTitleText": "编辑地址"
+			}
+		},
+		{
+			"path": "pages/mine/config",
+			"style": {
+				"navigationBarTitleText": "设置中心"
+			}
+		},
+		{
+			"path": "pages/mine/question",
+			"style": {
+				"navigationBarTitleText": "联系客服"
+			}
+		},
+		{
+			"path": "pages/mine/about",
+			"style": {
+				"navigationBarTitleText": "关于享指特快"
+			}
+		},
+		{
+			"path": "pages/index/orderConfirm",
+			"style": {
+				"navigationBarTitleText": "确认订单"
+			}
+		},
+		{
+			"path": "pages/index/orderPay",
+			"style": {
+				"navigationBarTitleText": "订单支付"
+			}
+		},
+		{
+			"path": "pages/mine/applyInvoice",
+			"style": {
+				"navigationBarTitleText": "申请发票"
+			}
+		},
+		{
+			"path": "pages/mine/topUp",
+			"style": {
+				"navigationBarTitleText": "用户充值"
+			}
+		},
+		{
+			"path": "pages/mine/topupConfirm",
+			"style": {
+				"navigationBarTitleText": "充值支付"
+			}
+		},
+		{
+			"path": "pages/mine/topupSuccess",
+			"style": {
+				"navigationBarTitleText": "充值成功"
+			}
+		},
+		{
+			"path": "pages/mine/orderDetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/index/loadSuccess",
+			"style": {
+				"navigationBarTitleText": "支付成功"
+			}
+		},
+		{
+			"path": "pages/mine/loginPassword",
+			"style": {
+				"navigationBarTitleText": "修改登录密码"
+			}
+		},
+		{
+			"path": "pages/mine/logistics",
+			"style": {
+				"navigationBarTitleText": "物流详情"
+			}
+		},
+		{
+			"path": "pages/index/webView",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/index/newMapAddress",
+			"style": {
+				"navigationBarTitleText": "常用地址"
+			}
+		},
+		{
+			"path": "pages/mine/chooseArea",
+			"style": {
+				"navigationBarTitleText": "选择定位"
+			}
+		},
+		{
+			"path": "pages/index/couponList",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+			}
+		},
+		{
+			"path": "pages/mine/myCoupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		},
+		{
+			"path": "pages/mine/logList",
+			"style": {
+				"navigationBarTitleText": "订单日志跟踪"
+			}
+		}
+	    ,{
+            "path" : "pages/mine/user",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑个人信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "享指特快",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}

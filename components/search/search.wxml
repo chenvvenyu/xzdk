@@ -1,7 +1,0 @@
-<!--components/search/search.wxml-->
-<view class='search' style='background:rgba({{boxBg}})'>
-    <view class='search-box' style='width:{{width}};height:{{height}};background:{{background}}'>
-        <icon type='search' size='20' color='{{color}}'></icon>
-        <input data-name="searchKey" value='{{searchKey}}' confirm-type='search' bindconfirm="transmitKey" bindblur="setSearchKey" bindinput='setSearchKey' placeholder='{{placeholder}}' style='color:{{color}};height:{{height}};'></input>
-    </view>
-</view>

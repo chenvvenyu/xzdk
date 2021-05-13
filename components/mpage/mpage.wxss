@@ -1,3 +1,0 @@
-/* pages/components/mpage/mpage.wxss */
-.mpage{ display: flex; align-items: center; justify-content: center; padding: 20rpx 20rpx 40rpx 20rpx;}
-.mpage-none{ color: #999;}

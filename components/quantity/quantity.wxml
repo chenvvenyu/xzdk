@@ -1,6 +1,0 @@
-<!--components/quantity/quantity.wxml-->
-<view class="quantity">
-    <view catchtap="{{outputNum<=numMin?'':'minus'}}" class="minus {{outputNum<=numMin?'dis':''}}"></view>
-    <input class="inputnum" disabled="{{inputRedonly}}" type="number" value='{{outputNum}}' catchinput='numberVal' bindblur="lastCheck" />
-    <view class='plus' catchtap='plus'></view>
-</view>

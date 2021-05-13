@@ -1,5 +1,0 @@
-/* pages/charge-rule/charge-rule.wxss */
-.weight{ background: #fff; padding: 20rpx; margin-top: 20rpx;}
-.title{ font-size: 30rpx;}
-.list{ margin-top: 20rpx;}
-.item{ display: flex; align-items: center; justify-content: space-between; margin-top: 10rpx;}

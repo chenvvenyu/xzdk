@@ -1,2 +1,0 @@
-<!--pages/outher-chain/outer-chain.wxml-->
-<web-view wx:if="{{show}}" src="{{link}}" bindload="webSuccess"></web-view>

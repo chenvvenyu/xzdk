@@ -1,5 +1,0 @@
-/* components/adapt-swiper/adapt-swiper.wxss */
-.adapt-swiper{ transition: all 0.3s;}
-/* .adapt-swiper swiper-item{}
-.adapt-swiper swiper-item navigator{} */
-.adapt-swiper swiper-item navigator image{ width: 100%;}

@@ -1,6 +1,0 @@
-<!--pages/components/mpage/mpage.wxml-->
-<view class='mpage'>
-    <view class="mpage-loading" wx:if="{{show==0}}" bindtap='loading'>加载中...</view>
-	<view class="mpage-more" wx:if="{{show==1}}" bindtap="getList">加载更多</view>
-	<view class="mpage-none" wx:if="{{show==2}}" bindtap="nomore">没有更多了</view>
-</view>

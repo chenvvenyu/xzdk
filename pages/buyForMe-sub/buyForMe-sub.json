@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText": "帮我买",  
-    "usingComponents": {
-        "quantity": "/components/quantity/quantity"
-    }
-}
