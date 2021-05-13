@@ -1,0 +1,6 @@
+
+.uni-collapse-cell__title{background-color:#FFFFFF}
+.content{padding:30rpx;background:#FFFFFF}
+.phone{z-index: 999;position:fixed;left: 0;right: 0;bottom: 0;height: 150rpx;background-color: #FFFFFF;text-align: center;font-size: 40rpx;line-height: 150rpx;}
+.page{padding-bottom: 160rpx;}
+

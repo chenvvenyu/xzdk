@@ -1,0 +1,12 @@
+
+.page{min-width: 100vw;min-height: 100vh;background-color: #F5F5F5;padding: 30rpx;box-sizing: border-box;}
+.con-address,.order-info{padding: 30rpx;background-color: #FFFFFF;box-shadow: 0 0 20rpx #ccc;border-radius: 20rpx;}
+.con-address .address-icon image{width: 54rpx;height: 216rpx;}
+.con-address .address-des{padding-left: 40rpx;}
+.address-des .title{font-size: 30rpx;font-weight: bold;}
+.address-des .text{font-size: 28rpx;color: #888888;}
+.address-sou{margin-bottom: 20rpx;}
+.order-info{margin-top: 30rpx;}
+.order-info .text{line-height: 60rpx;}
+
+

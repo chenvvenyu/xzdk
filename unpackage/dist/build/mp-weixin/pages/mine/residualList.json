@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "余额明细",
+  "usingComponents": {
+    "uni-list-item": "/components/uni-list-item/uni-list-item"
+  }
+}

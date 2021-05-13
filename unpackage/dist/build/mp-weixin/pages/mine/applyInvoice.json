@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "申请发票",
+  "usingComponents": {
+    "uni-list-item": "/components/uni-list-item/uni-list-item"
+  }
+}

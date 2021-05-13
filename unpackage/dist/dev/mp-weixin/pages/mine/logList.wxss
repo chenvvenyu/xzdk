@@ -1,0 +1,16 @@
+.warp.data-v-571a663f {
+  width: 690rpx;
+  margin: 0 30rpx;
+}
+.warp .log-item.data-v-571a663f {
+  padding: 30rpx 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.warp .log-item .title.data-v-571a663f {
+  font-size: 14px;
+}
+.warp .log-item .time.data-v-571a663f {
+  font-size: 13px;
+  color: #666666;
+}
+

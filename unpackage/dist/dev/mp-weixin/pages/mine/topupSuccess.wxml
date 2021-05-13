@@ -1,0 +1,1 @@
+<view class="container-warp"><view class="icon"><image mode="widthFix" src="../../static/images/cg_icon_03.jpg"></image></view><view class="text"><view class="title-1">充值成功</view></view><view class="operation-box"><button class="btnSubmit" type="primary" data-event-opts="{{[['tap',[['btnSubmit',['$event']]]]]}}" bindtap="__e">返回大厅</button></view></view>

@@ -1,0 +1,17 @@
+
+.head{padding: 40rpx;margin-top: 40rpx;}
+.head .uni-flex-item-1{text-align: right;}
+.head .fullname {font-size: 32rpx;}
+.head .headurl{width: 120rpx;height: 120rpx;margin-top: 10rpx; border-radius: 60px;}
+.head .phone{font-size: 50rpx;height: 70rpx;line-height: 70rpx;}
+.head .txt{background: -webkit-linear-gradient(330deg, #329AFF 0%, #329AFF 100%);background: linear-gradient(120deg, #329AFF 0%, #329AFF 100%);color:white; width: 200rpx;height: 70rpx;line-height: 70rpx;border-radius: 35rpx;text-align: center;}
+.uni-grid-image {width: 80rpx;height: 80rpx;}
+.uni-grid-text{font-size: 30rpx;}
+.uni-grid-dot{position: absolute;top: 5px;right: 15px;}
+.uni-list-item__container{padding: 30rpx !important;}
+.uni-list-item__container:after{height: 0 !important;}
+.uni-list-item__content-title,.uni-list-item__extra{font-size: 38rpx !important;}
+.uni-icon{font-size: 50rpx !important;}
+.image{width: 690rpx;height: 170rpx;}
+.uni-badge{font-size: 15px !important;}
+

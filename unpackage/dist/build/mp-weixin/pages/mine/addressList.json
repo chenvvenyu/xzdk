@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "常用地址",
+  "usingComponents": {
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
+  }
+}

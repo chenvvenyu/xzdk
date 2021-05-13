@@ -1,0 +1,1 @@
+<view><view><view class="money">{{"￥"+topupMoney}}</view><view class="title">支付金额</view></view><view class="btn"><button type="primary" data-event-opts="{{[['tap',[['Topup',['$event']]]]]}}" bindtap="__e">立即支付</button></view></view>
