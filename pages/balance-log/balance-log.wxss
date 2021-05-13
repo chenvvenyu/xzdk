@@ -1,0 +1,9 @@
+/* pages/balance-log/balance-log.wxss */
+.wc-log-list{ background: #fff;}
+.wc-ll-li{ border-bottom: #f5f5f5 1px solid; display: flex; align-items: center; justify-content: space-between; padding:20rpx 30rpx;}
+.wc-ll-li view:nth-child(1){ display: flex; flex-flow: column;}
+.wc-ll-li view:nth-child(1) text:nth-child(1){ font-size: 16px; color: #333;}
+.wc-ll-li view:nth-child(1) text:nth-child(2){ font-size: 14px; color: #999; margin-top: 10rpx;}
+.wc-ll-li view:nth-child(2){ font-size: 20px;}
+.color-a92f46{ color: #a92f46;}
+.color-4eaf50{ color: #4eaf50;}

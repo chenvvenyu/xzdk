@@ -1,0 +1,15 @@
+<!--components/star/star.wxml-->
+<view class="star">
+    <!-- 星星的底色 -->
+    <view class="star-unselected">
+        <block wx:for="{{starList}}" wx:for-item="x" wx:for-index="y" wx:if="{{y < inMaxStar}}" wx:key="x">
+            <view class="iconfont icon-xing" data-score="{{x}}" style="margin-right:{{inMarginRight}};font-size:{{inFontSize}};" catchtap="select"></view>
+        </block>
+    </view>
+    <!-- 选中的星星 -->
+    <view class="star-selected">
+        <block wx:for="{{starList}}" wx:for-item="x" wx:for-index="y" wx:if="{{y < score && y < inMaxStar}}" wx:key="x">
+            <view class="iconfont icon-xing" data-score="{{x}}" style="margin-right:{{inMarginRight}};font-size:{{inFontSize}};color:{{inStarColor}};" catchtap="select"></view>
+        </block>
+    </view>
+</view>

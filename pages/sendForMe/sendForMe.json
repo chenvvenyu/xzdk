@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "帮我送",  
+    "usingComponents": {
+        "quantity": "/components/quantity/quantity"
+    }
+}

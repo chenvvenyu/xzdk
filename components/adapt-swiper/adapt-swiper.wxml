@@ -1,0 +1,10 @@
+<!--components/adapt-swiper/adapt-swiper.wxml-->
+<swiper class="adapt-swiper" autoplay="{{autoplay}}" circular="{{circular}}" bindchange="bindchange" style="width:{{viewWidth}}rpx;height:{{list[current].viewHeight}}rpx" indicator-dots="{{dots}}" indicator-color="{{color}}" indicator-active-color="{{activeColor}}">
+	<block wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+		<swiper-item>
+			<navigator url="" hover-class="none">
+				<image mode="widthFix" src="{{x[imgField]}}" lazy-load="true" data-y='{{y}}' bindload="imageLoad"></image>
+			</navigator>
+		</swiper-item>
+	</block>
+</swiper>

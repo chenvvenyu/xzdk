@@ -1,0 +1,49 @@
+<!--pages/cash-log-detail/cash-log-detail.wxml-->
+<view class="cash-log-detail" wx:if="{{pageData}}">
+    <view class="cld-info" wx:if="{{pageData.type==1}}">
+        <view class="item-cld">
+            <text>银行名称：</text>
+            <view>{{pageData.bankName}}</view>
+        </view>
+        <view class="item-cld">
+            <text>银行账号：</text>
+            <view>{{parameter.bankNo}}</view>
+        </view>
+        <view class="item-cld">
+            <text>用户名：</text>
+            <view>{{parameter.name}}</view>
+        </view>
+        <view class="item-cld">
+            <text>提现金额：</text>
+            <view>￥{{pageData.amount}}</view>
+        </view>
+    </view>
+    <view class="cld-info" wx:else>
+        <view class="item-cld">
+            <text>提现名称：</text>
+            <view>微信</view>
+        </view>
+        <view class="item-cld">
+            <text>用户名：</text>
+            <view>{{parameter.realName}}</view>
+        </view>
+        <view class="item-cld">
+            <text>提现金额：</text>
+            <view>￥{{pageData.amount}}</view>
+        </view>
+    </view>
+    <view class="cld-result">
+        <view class="item-cld">
+            <text>申请日期：</text>
+            <view>{{pageData.createTime}}</view>
+        </view>
+        <view class="item-cld">
+            <text>状态：</text>
+            <view class="color-009944">{{pageData.statusStr}}</view>
+        </view>
+        <view class="item-cld" wx:if="{{pageData.status==3}}">
+            <text>拒绝原因：</text>
+            <view class="color-e60012">{{pageData.reason}}</view>
+        </view>
+    </view>
+</view>

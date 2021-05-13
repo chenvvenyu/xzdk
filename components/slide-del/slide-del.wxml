@@ -1,0 +1,12 @@
+<!--components/slide-del/slide-del.wxml-->
+<view class="slide-del-frame" style="height:{{frameH}}rpx;width:{{frameW}}rpx;">
+    <movable-area class="slide-del" style="width:{{oaTitle?frameW+340:frameW+170}}rpx;margin-left:{{oaTitle?-340:-170}}rpx;">
+        <movable-view out-of-bounds="true" class="sd-mod" inertia="true" direction="horizontal" x="{{x}}rpx" bindtouchstart="moveSt" bindtouchend="moveEnd" style="width:{{frameW}}rpx;">
+            <view class="ad-slot">
+                <slot></slot>
+            </view>
+            <view class="other-action" wx:if="{{oaTitle}}" catchtap="oaAction">{{oaTitle}}</view>
+            <view class="del" catchtap="del" style="left:{{oaTitle?frameW+170:frameW}}rpx">删除</view>
+        </movable-view>
+    </movable-area>
+</view>

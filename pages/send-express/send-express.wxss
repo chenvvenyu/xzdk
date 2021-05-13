@@ -1,0 +1,55 @@
+/* pages/send-express/send-express.wxss */
+.address{ width: 710rpx; background: #fff; position: relative; z-index: 100; margin: 20rpx auto; border-radius: 16rpx; display: flex;}
+.address .left{ display: flex; flex-flow: column; align-items: center; width: 100rpx;}
+.address .left .a{ width: 40rpx; height: 40rpx; background: #2044FF; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20rpx; border-radius: 40rpx; margin-top: 60rpx;}
+.address .left .line{ width: 6rpx; height: 160rpx; background: linear-gradient(180deg, #2044FF 0%, #FF6F1E 100%);}
+.address .left .b{ width: 40rpx; height: 40rpx; background: #FF6F1E; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20rpx; border-radius: 40rpx; margin-bottom: 60rpx;}
+.address .right{ flex:1;}
+.address .right .item{ display: flex; align-items: center; height: 180rpx;}
+.address .right .item .info{ flex: 1; display: flex; flex-flow: column; justify-content: center;padding-right: 10rpx;}
+.address .right .item .info .name .p1{ color: #000000; font-size: 32rpx; font-weight: bold;}
+.address .right .item .info .name .p2{ color: #000000; font-size: 32rpx; font-weight: bold; margin-left: 10rpx;}
+.address .right .item .info .location{ color: #CCCCCC; font-size: 26rpx; margin-top: 10rpx;}
+.address .right .item .choice{ width: 140rpx; flex-shrink: 0; border-left: #CDCDCD 1rpx solid; display: flex; align-items: center; justify-content: center; color: #666666; font-size: 28rpx;}
+
+.card{ width: 710rpx; background: #fff; box-sizing: border-box; padding: 20rpx; border-radius: 16rpx; margin: 20rpx auto 0 auto;}
+
+.one .goods{ padding: 24rpx 0; border-bottom: #F5F5F5 1rpx solid;}
+.one .goods .choice{ display: flex; align-items: center; color: #808080;}
+.one .goods .choice .text{ color: #333;}
+.one .item{ display: flex; align-items: center; justify-content: space-between;}
+.one .item .title{ color: #333333; font-size: 28rpx; display: flex; align-items: center; justify-content: center;}
+.one .item .title .must{ border-radius: 30rpx; border: #f12733 1rpx solid; font-size: 20rpx; color: #f12733; padding: 0 10rpx; margin-left: 10rpx;}
+.one .info{ padding: 10rpx 0 24rpx 0; border-bottom: #F5F5F5 1rpx solid;}
+.one .info .choice{ display: flex; align-items: center; justify-content: center;}
+.one .info .choice .p{ color: #2044FF; border: #2044FF 1rpx solid; border-radius: 26rpx; width: 162rpx; height: 52rpx; display: flex; align-items: center; justify-content: center; font-size: 28rpx;}
+.one .item .img{ width: 48rpx; height: 48rpx;}
+.one .time{ padding-top: 24rpx;}
+.one .time .time-picker .time-picker-content{ display: flex; align-items: center; justify-content: center;}
+.one .coupon{ display: flex; align-items: center; justify-content: space-between; padding-top: 24rpx; border-top: #F5F5F5 1rpx solid; margin-top: 24rpx;}
+.one .coupon .title{ color: #333333; font-size: 28rpx;}
+.one .coupon .picker{ flex: 1;}
+.one .coupon .picker .p{ width: 100%; text-align: right;}
+.one .img{ width: 48rpx; height: 48rpx;}
+.one .offer{ padding-top: 24rpx; border-top: #F5F5F5 1rpx solid; margin-top: 24rpx; font-size: 28rpx;}
+.one .offer .input{ text-align: right; font-size: 28rpx; padding-right: 20rpx;}
+
+
+.five .img{ width: 48rpx; height: 48rpx;}
+.five .coupon{ display: flex; align-items: center; justify-content: space-between;}
+.five .coupon .picker{ flex: 1;}
+.five .coupon .picker .item{ width: 100%; text-align: right;}
+.five .code{ display: flex; align-items: center; justify-content: space-between; border-top: #F5F5F5 1rpx solid; padding-top: 24rpx;}
+
+.prop{ height: 200rpx;}
+.six{ height: 100rpx; background: #fff; position: fixed; left: 0; bottom: 0; width: 100%; z-index: 100; display: flex; align-items: center; justify-content: space-between;}
+.six .left{ margin-left: 36rpx; display: flex; justify-content: center; flex-flow: column;}
+.six .left .title{ margin-bottom: 5rpx;}
+.six .left .title .p1{ color: #333333; font-size: 24rpx;}
+.six .left .title .p2{ color: #F01F06; font-size: 28rpx; font-weight: bold;} 
+.six .left .agree{ display: flex; align-items: center;}
+.six .left .agree .icon{ margin-right: 5rpx;}
+.six .left .agree .p{ color: #999; font-size: 20rpx;}
+.six .left .agree .a{ color: #2044FF; color: #999; font-size: 20rpx;}
+.six .right{ display: flex; align-items: center; justify-content: center; width: 204rpx; height: 72rpx; color: #fff; background: #2044FF; border-radius: 100rpx; margin-right: 20rpx;}
+

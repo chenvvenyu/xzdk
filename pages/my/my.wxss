@@ -1,0 +1,28 @@
+/* pages/my/my.wxss */
+page{ background: #fff;}
+.bg{ background: linear-gradient(180deg, #FFFFFF 0%, #F6F7FC 50%, #F6F7FC 100%);}
+.one{ display: flex; align-items: center; justify-content: space-between; padding: 60rpx 30rpx;}
+.one .left{ display: flex; align-items: center;}
+.one .left .img{ width: 128rpx; height: 128rpx; border-radius: 128rpx; overflow: hidden;}
+.one .left .info{ margin-left: 10rpx; display: flex; align-items: center; justify-content: space-between; flex-flow: column; height: 100rpx;}
+.one .left .info .name{ color: #000000; font-size: 36rpx; font-weight: bold;}
+.one .left .info .level{ display: flex; align-items: center; justify-content: center;}
+.one .left .info .level image{ width: 150rpx;}
+.one .right{ margin-right: 20rpx;}
+.one .right .img{ width: 48rpx; height: 48rpx;}
+.two{ display: flex; align-items: center; justify-content: center;}
+.two .img{ width: 678rpx;}
+.three{ padding-top: 60rpx;}
+.three .title{ font-weight: bold; color: #000000; font-size: 32rpx; padding: 0 40rpx;}
+.three .list{ display: flex; align-items: center; padding: 40rpx 0;}
+.three .list .item{ display: flex; align-items: center; justify-content: center; flex-flow: column; width: 25%; padding-bottom: 50rpx;}
+.three .list .item .img{ width: 64rpx; height: 64rpx;}
+.three .list .item .p{ color: #333; font-size: 24rpx; margin-top: 15rpx;}
+.four .title{ font-weight: bold; color: #000000; font-size: 32rpx; padding: 0 40rpx;}
+.four .list{ display: flex; align-items: center; padding: 40rpx 0; flex-wrap: wrap;}
+.four .list .item{ display: flex; align-items: center; justify-content: center; flex-flow: column; width: 25%; padding-bottom: 50rpx;}
+.four .list .item .img{ width: 48rpx; height: 48rpx;}
+.four .list .item .p{ color: #333; font-size: 24rpx; margin-top: 15rpx;}
+.four .list .bt{ background: none !important; padding: 0 !important; padding-bottom: 50rpx !important;}
+.four .list .bt:not([size='mini']){ width: 25% !important; margin-left: 0 !important; margin-right: 0 !important;}
+.four .list .bt .p{ color: #333; font-size: 24rpx; margin-top: 15rpx; font-weight: normal;}

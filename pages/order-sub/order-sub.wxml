@@ -1,0 +1,117 @@
+<!--pages/order-sub/order-sub.wxml-->
+<view class="order-sub" wx:if="{{pageData}}">
+	<navigator url="/pages/address-list/address-list?choice=orderSub" hover-class="none" class="os-a card">
+		<view wx:if="{{pageData.userAddressInfo}}">
+			<view>{{pageData.userAddressInfo.address}}</view>
+			<view>{{pageData.userAddressInfo.name}} {{pageData.userAddressInfo.mobile}}</view>
+		</view>
+		<view wx:else style="color:#333;">
+			您还没有收货地址，点击添加收货地址
+		</view>
+		<text class="iconfont icon-right"></text>
+	</navigator>
+	<!-- <view class="os-b card">
+		<text>期望送达时间</text>
+		<view>约12：45送达</view>
+		<picker mode="time" class="time" bindchange="bindTimeChange">
+			<view class="picker-time">
+				<block wx:if="{{time}}">{{time}}</block>
+				<block wx:else>选择期望送达的时间，可不选</block>
+			</view>
+		</picker>
+	</view> -->
+	<view class="os-f card">
+		<text>配送方式</text>
+		<view class="of-picker">
+			<!-- <view class="of-p-item" data-type="2" catchtap="choiceDeliveryType">
+				<icon type="{{deliveryType==2?'success':'circle'}}" color="{{deliveryType==2?'#2E6DFB':''}}"></icon>
+				<view>自取</view>
+			</view> -->
+			<view class="of-p-item" data-type="1" catchtap="choiceDeliveryType">
+				<icon type="{{deliveryType==1?'success':'circle'}}" color="{{deliveryType==1?'#2E6DFB':''}}"></icon>
+				<view>外送</view>
+			</view>
+		</view>
+	</view>
+	<view class="card od-c">
+		<view class="od-c-1">
+			<text>{{pageData.businessDTO.businessName}}</text>
+			<text class="iconfont icon-right"></text>
+		</view>
+		<view class="od-c-2">
+			<view class="od-c2-item" wx:for="{{pageData.productDTOList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+				<image src="{{x.image}}"></image>
+				<view>
+					<view>{{x.name}}</view>
+					<view>
+						<text>x{{x.purchaseQuantity}}</text>
+						<text>￥{{x.price}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="od-c-give" wx:if="{{pageData.active}}">[活动] {{pageData.active}}</view> -->
+		<view class="od-c-3">
+			<!-- <view>
+				<text>打包费</text>
+				<text>￥{{pageData.lunchBoxAmount}}</text>
+			</view> -->
+			<view>
+				<text>跑腿费</text>
+				<text>￥{{pageData.userBearFreight}}</text>
+			</view>
+		</view>
+		<!-- 优惠券 -->
+		<!-- <view class="ad-coupon" wx:if="{{coupon&&coupon.length>0}}">
+			<view>
+				<text>优惠券</text>
+				<icon type="clear" color="#a3a9bc" wx:if="{{couponsId}}" bindtap="clearCoupon"></icon>
+			</view>
+			<view>
+				<picker mode="selector" bindchange="pickerCoupon" range="{{coupon}}" value="{{couponsId}}" range-key="couponName">
+					<view wx:if="{{couponsId}}">￥{{coupon[couponsId].reliefAmount}}</view>
+					<view class="picker-placeholder" wx:else>请选择优惠券</view>
+				</picker>
+				<view class="iconfont icon-right"></view>
+			</view>
+		</view> -->
+		<view class="od-c-5">
+			<!-- <text>优惠￥{{pageData.discountAmount}}</text> -->
+			<text>订单金额</text>
+			<text>￥{{pageData.productRealPrice*1 + pageData.userBearFreight*1}}</text>
+		</view>
+	</view>
+	<view class="os-d card">
+		<!-- <view class="os-d-item">
+			<text>支付方式</text>
+			<view>
+				<text>在线支付</text>
+			</view>
+		</view> -->
+		<!-- <view class="os-d-item">
+			<text>餐具份数</text>
+			<view>
+				<picker range="{{tablewareList}}" bindchange="tablewareChange">
+					<view>{{tablewareList[tablewareIndex]}}份</view>
+				</picker>
+				<text class="iconfont icon-right"></text>
+			</view>
+		</view> -->
+		<view class="os-d-item">
+			<text>备注</text>
+			<view>
+				<input placeholder="请填写备注" data-name="remark" bindinput='twobind'></input>
+				<text class="iconfont icon-right"></text>
+			</view>
+		</view>
+	</view>
+	<view class="os-prop"></view>
+	<view class="os-e">
+		<view>
+			<!-- <text>优惠￥{{couponsId?coupon[couponsId].reliefAmount:0}}</text> -->
+			<text>实付</text>
+			<text>￥{{pageData.productRealPrice*1 + pageData.userBearFreight*1}}</text>
+		</view>
+		<view catchtap="sub">提交订单</view>
+	</view>
+</view>

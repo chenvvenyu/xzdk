@@ -1,0 +1,21 @@
+<!--pages/authorize/authorize.wxml-->
+<view class="authorize">
+    <view class="authorize-title">
+        需要您的授权
+    </view>
+    <view class="authorize-tips">  
+        <text>为了提供更好的服务</text>
+        <text>授权关系到您是否可以正常使用本小程序的主要内容</text>
+        <text>请在稍后的提示框中点击“允许”</text>
+    </view>
+    <view class="authorize-img">
+        <image mode="widthFix" src="authorize.png"></image>
+    </view>
+    <view class="authorize-bt" wx:if="{{isAuthorize}}">
+        <navigator open-type="navigateBack" delta="1">取消</navigator >
+        <button bindtap="getUserProfile">授权</button>
+    </view>
+    <view class="authorize-phone" wx:if="{{isBind}}">
+        <button open-type="getPhoneNumber" bindgetphonenumber="getPhone">绑定手机号码</button>
+    </view>
+</view>

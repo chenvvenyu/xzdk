@@ -1,0 +1,137 @@
+<!--pages/buyForMe-sub/buyForMe-sub.wxml-->
+<view class="bfm-sub">
+	<view class="one card">
+		<view class="title">填写想要购买的商品</view>
+		<textarea class="textarea" placeholder="想买什么，就买什么！请填写商品名称和数量" data-name="subData.buyRemark"
+			value='{{subData.buyRemark}}' bindinput='bindValue'></textarea>
+		<!-- <view class="recommend">
+			<block wx:for="{{recommendList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+				<view class="item">111</view>
+			</block>
+		</view> -->
+	</view>
+	<view class="two card">
+		<view class="tab">
+			<view class="item {{tabVa==1?'select':''}}" data-x="1" catchtap="tabFn">
+				<text class="p1"></text>
+				<text class="p2">指定地点购买</text>
+			</view>
+			<view class="item {{tabVa==2?'select':''}}" data-x="2" catchtap="tabFn">
+				<text class="p1"></text>
+				<text class="p2">跑腿就近购买</text>
+			</view>
+		</view>
+		<view class="appoint" wx:if="{{tabVa==1}}" bindtap="choiceLoaction">
+			<view class="buy">买</view>
+			<text class="p">{{subData.mailAddress ? subData.mailAddress : '请选择购买地点'}}</text>
+			<image src="/static/img/right.png" class="img"></image>
+		</view>
+		<!-- <view class="nearby">
+            <view class="buy">买</view>
+            <text class="p">跑腿将在附件2公里内帮您购买</text>
+            <image src="/static/img/right.png" class="img"></image>
+        </view> -->
+	</view>
+	<navigator url="/pages/address-list/address-list?choice=collect" hover-class="none" class="three card">
+		<view class="buy">收</view>
+		<view class="center">
+			<view class="title">{{collect.name}}</view>
+			<view class="location">{{collect.address}}</view>
+		</view>
+		<view class="right">常用</view>
+	</navigator>
+	<view class="four card">
+		<view class="product">
+			<view class="title">商品价格</view>
+			<view class="right">
+				<text class="p">￥</text>
+				<input class="input" type="number" placeholder="预估商品费" data-name="subData.planAmount"
+					bindinput='bindValue'></input>
+				<image src="/static/img/right.png" class="img"></image>
+			</view>
+		</view>
+		<!-- <view class="coupon">
+			<view class="title">商品优惠券</view>
+			<picker class="picker" mode="selector" bindchange="pickerCoupon" range="{{coupon}}" value="{{couponsId}}" range-key="couponName">
+				<view class="item" wx:if="{{couponsId}}">￥{{coupon[couponsId].reliefAmount}}</view>
+				<view class="picker-placeholder item" wx:else>请选择商品优惠券</view>
+			</picker>
+			<image src="/static/img/right.png" class="img"></image>
+		</view> -->
+	</view>
+	<view class="five card">
+		<view class="reward">
+			<view class="item">
+				<text class="p1">打赏</text>
+				<text class="p2">加点小费骑士接单速度更快</text>
+			</view>
+			<quantity inputNum="0" inputNumMin="0" bind:backData="getNum"></quantity>
+		</view>
+		<view class="coupon">
+            <view class="title">跑腿优惠券</view>
+            <picker class="picker" mode="selector" bindchange="pickerCoupon" range="{{coupon}}" value="{{couponsId}}"
+                range-key="str">
+                <view class="item" wx:if="{{couponsId}}">￥{{coupon[couponsId].str}}</view>
+                <view class="picker-placeholder item" wx:else>请选择跑腿优惠券</view>
+            </picker>
+            <image src="/static/img/right.png" class="img"></image>
+        </view>
+	</view>
+	<view class="prop"></view>
+	<view class="six">
+		<view class="left">
+			<view class="ques">
+				<icon class="icon" type="info" bindtap="{{infoDetail?'priceShowFn':''}}"></icon>
+			</view>
+			<view class="price">
+				<view class="title" bindtap="isAgree">
+					<text class="p1">{{tips}}</text>
+					<text class="p2">￥{{lastPrice*1+subData.totalBonus*1+subData.planAmount*1}}</text>
+				</view>
+				<view class="agree">
+					<icon type="success" size="15" color="#2044FF" class="icon" wx:if="{{agree}}" bindtap="isAgree">
+					</icon>
+					<icon type="circle" size="15" class="icon" wx:else bindtap="isAgree"></icon>
+					<text class="p" bindtap="isAgree">我已阅读</text>
+					<navigator hover-class="none" class="a">《快件服务协议》</navigator>
+				</view>
+			</view>
+		</view>
+		<view class="right" bindtap="sub">
+			下单
+		</view>
+	</view>
+	<view class="price-info">
+		<view class="black-bg" wx:if="{{priceShow}}" bindtap="priceShowFn"></view>
+		<view class="content" style="bottom:{{priceShow?'0':'-620'}}rpx">
+			<view class="title">
+				<view class="cancel" bindtap="priceShowFn">取消</view>
+				<view class="label">费用明细</view>
+				<view class="confirm" bindtap="priceShowFn">确定</view>
+			</view>
+			<view class="freight">
+				<view class="list">
+					<view class="item">
+						<view class="label">基础运费({{infoDetail.dis/1000}}公里)</view>
+						<view class="price">￥{{infoDetail.amountD}}</view>
+					</view>
+					<view class="item">
+						<view class="label">物品重量({{infoDetail.minW}}-{{infoDetail.maxW}}KG)</view>
+						<view class="price">￥{{infoDetail.amountW}}</view>
+					</view>
+					<!-- <view class="item">
+                        <view class="label">特殊时间段溢价(10公里)</view>
+                        <view class="price">￥10</view>
+                    </view> -->
+					<view class="item">
+						<view class="label">总费用</view>
+						<view class="price">￥{{infoDetail.amountD+infoDetail.amountW}}</view>
+					</view>
+				</view>
+				<view class="tip">*实际费用可能因实际行驶里程/等候时间等因素而异</view>
+				<navigator url="/pages/charge-rule/charge-rule?id={{send.addressId}}" hover-class="none" class="a">计价规则
+				</navigator>
+			</view>
+		</view>
+	</view>
+</view>

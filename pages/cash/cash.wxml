@@ -1,0 +1,56 @@
+<!--pages/cash/cash.wxml-->
+<view class="cash">
+    <view class="r-pay-type">
+        <view class="r-pt-title">
+            提现方式
+        </view>
+        <view class="r-pt-list">
+            <view class="r-ptl-li" data-tab="2" catchtap="tab">
+                <view>
+                    <image src="../../static/img/cash-1.png"></image>
+                    <text>微信</text>
+                </view>
+                <icon type="success" size="25" color="{{tab==2?'#2E6DFB':'#a3a9bc'}}"></icon>
+            </view>
+            <view class="r-ptl-li" data-tab="1" catchtap="tab">
+                <view>
+                    <image src="../../static/img/cash-2.png"></image>
+                    <text>银行卡</text>
+                </view>
+                <icon type="success" size="25" color="{{tab==1?'#2E6DFB':'#a3a9bc'}}"></icon>
+            </view>
+        </view>
+    </view>
+    <view class="c-bank" wx:if="{{tab==1}}">
+        <navigator url="/pages/bank-list/bank-list?from=cash" class="c-b-list rightArrow" wx:if="{{bank}}">
+            <view>
+                <image src="{{bank.bankLogo}}"></image>
+                <text>{{bank.bankNo}}\n{{bank.bankName}}</text>
+            </view>
+        </navigator>
+        <navigator url="/pages/bank-list/bank-list?from=cash" class="c-b-add rightArrow" wx:else>
+            点击添加银行卡
+        </navigator>
+    </view>
+    <view class="c-name" wx:else>
+        <input type="text" bindinput="nameInput" placeholder="请在此输入微信认证的真实姓名"></input>
+        <view>只有微信认证了实名信息的用户才可以提现到微信</view>
+    </view>
+    <view class="c-amount">
+        <view class="c-a-title">提现金额</view>
+        <view class="c-a-input">
+            <text>￥</text>
+            <input type="number" value='{{amount}}' bindinput='amountCheck' placeholder="请输入提现金额"></input>
+        </view>
+        <view class="c-a-all">
+            <view>可提现金额：￥{{balance}}</view>
+            <text catchtap="cashAll">全部提现</text>
+        </view>
+    </view>
+    <navigator url="/pages/cash-log/cash-log" hover-class="none" class="cash-log">
+        <text>提现记录</text>
+    </navigator>
+    <view class="fix-bt">
+        <view catchtap="sub">确认提现</view>
+    </view>
+</view>

@@ -1,0 +1,18 @@
+/* pages/order-pay/order-pay.wxss */
+.card{ background: #fff; width: 710rpx; margin: 20rpx auto 0rpx auto; border-radius: 12rpx;}
+.op-a{ display: flex; align-items: center; justify-content: center; flex-flow: column; padding: 40rpx 0;}
+.op-a-1{ color: #181815;}
+.op-a-1 text:nth-child(1){ font-size: 36rpx;}
+.op-a-1 text:nth-child(2){ font-size: 60rpx;}
+.op-a-2{ color: #9F9E9C; margin-top: 20rpx; display: flex; align-items: center; justify-content: center;}
+
+.op-b{ padding: 0 30rpx 30rpx 30rpx; box-sizing: border-box;}
+.op-b-title{ padding: 30rpx 0; font-size: 28rpx;}
+.op-b-item{ display: flex; align-items: center; justify-content: space-between; padding: 25rpx 0;}
+.op-b-item > view:nth-child(1){ display: flex; align-items: center;}
+.op-b-item > view:nth-child(1) text:nth-child(1){ font-size: 40rpx;}
+.op-b-item > view:nth-child(1) text:nth-child(2){ font-size: 28rpx; margin-left: 15rpx;}
+.color-2E6DFB{ color: #2E6DFB;}
+.color-0bb907{ color: #0bb907;}
+.op-b-item > view:nth-child(2){ color: #D5D5D7; transition: all 0.5s; font-size: 40rpx;}
+.op-b-item > view:nth-child(2).choice{ color: #2E6DFB; font-size: 44rpx;}

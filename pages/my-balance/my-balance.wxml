@@ -1,0 +1,27 @@
+<!--pages/my-balance/my-balance.wxml-->
+<view class="my-balance">
+    <view class="balance">
+        <view class="title">可用金额(元)</view>
+        <view class="value">{{pageData.balance}}</view>
+    </view>
+    <view class="list">
+        <navigator url="/pages/recharge/recharge" hover-class="none" class="item">
+            <view class="left">
+                <image class="img" src="/static/img/balance-1.png"></image>
+                <text class="p">充值</text>
+            </view>
+            <view class="right">
+                <image class="img" src="/static/img/right.png"></image>
+            </view>
+        </navigator>
+        <navigator url="/pages/balance-log/balance-log" hover-class="none" class="item">
+            <view class="left">
+                <image class="img" src="/static/img/balance-2.png"></image>
+                <text class="p">明细</text>
+            </view>
+            <view class="right">
+                <image class="img" src="/static/img/right.png"></image>
+            </view>
+        </navigator>
+    </view>
+</view>

@@ -1,0 +1,17 @@
+/* pages/address-edit/address-edit.wxss */
+.discern{ display: flex; align-items: center; justify-content: space-between; width: 710rpx; height: 100rpx; background: #fff; margin: 0 auto; border-radius: 12rpx; margin-top: 30rpx; box-sizing: border-box; padding: 0 30rpx;}
+.discern .input{ flex: 1;}
+.discern .img{ width: 48rpx; height: 48rpx; margin-left: 30rpx;}
+
+.content{ width: 710rpx; background: #fff; margin: 0 auto; border-radius: 12rpx; margin-top: 30rpx; box-sizing: border-box; padding: 0 30rpx;}
+.content .title{ display: flex; align-items: center; justify-content: space-between; padding: 30rpx 0;}
+.content .title .p{ font-size: 32rpx; color: #333333;}
+.content .title .img{ width: 48rpx; height: 48rpx;}
+.content .list{ padding-bottom: 30rpx;}
+.content .list .item{ display: flex; align-items: center; justify-content: space-between; padding: 30rpx 0;}
+.content .list .item .p{ width: 150rpx; color: #333333; font-size: 26rpx;}
+.content .list .item .input{ flex: 1; font-size: 26rpx;}
+.content .list .item .picker{ flex: 1;}
+.content .list .item .picker .view{ font-size: 26rpx;}
+.content .list .item .img{ width: 48rpx; height: 48rpx;}
+.content .list .item .p-other{ width: 300rpx !important;}

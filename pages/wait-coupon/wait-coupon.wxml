@@ -1,0 +1,46 @@
+<!--pages/coupon/coupon.wxml-->
+<view class="coupon">
+    <!-- <view class="fix-top all-yy">
+		<view class="tab">
+			<view class="{{tab==1?'select':''}} item" data-x="1" catchtap="tabFn">未使用</view>
+			<view class="{{tab==2?'select':''}} item" data-x="2" catchtap="tabFn">已使用</view>
+			<view class="{{tab==3?'select':''}} item" data-x="3" catchtap="tabFn">已过期</view>
+		</view>
+	</view>
+	<view class="top-prop"></view> -->
+    <view class="coupon-list" wx:if="{{list.length>0}}">
+        <block wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+            <view class="cl-item">
+                <view class="cl-i-left" wx:if="{{x.calculationType==1}}">
+                    <view>
+                        <text>{{x.discount*10}}</text>
+                        <text>折</text>
+                    </view>
+                </view>
+                <view class="cl-i-left" wx:if="{{x.calculationType==2}}">
+                    <view>
+                        <text>{{x.couponAmount}}</text>
+                        <text>元</text>
+                    </view>
+                    <view>满{{x.taskAmount}}元可用</view>
+                </view>
+                <view class="cl-i-right">
+                    <text class="ellipsis color-333333">{{x.rangeStr}}</text>
+                    <text class="ellipsis color-666666">{{x.typeStr}}</text>
+                    <text class="ellipsis color-666666">有效期：{{x.date?x.date:'永久有效'}}</text>
+                </view>
+                <view hover-class="none" class="cl-i-bt" data-id="{{x.couponId}}" bindtap="receive">立 即 领 取</view>
+                <view class="cl-i-top-circular"></view>
+                <view class="cl-i-bottom-circular"></view>
+            </view>
+        </block>
+    </view>
+    <view class="empty" wx:else>
+		<image mode="widthFix" src="/static/img/base/empty-2.png" class="img"></image>
+		<text class="tip">暂无可领取优惠券</text>
+    </view>
+    <view class="fix-bt-prop"></view>
+    <view class="fix-bt" bindtap="receiveAll">
+        <view>一键领取</view>
+    </view>
+</view>

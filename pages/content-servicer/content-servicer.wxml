@@ -1,0 +1,24 @@
+<!--pages/content-servicer/content-servicer.wxml-->
+<view class="content-servicer">
+    <view class="send-message">
+        <input type="text" class="input" placeholder="请给客服留言" data-name="subData.message" value='{{subData.message}}' bindinput='bindValue'></input>
+        <view class="sub" bindtap="sub">留言</view>
+    </view>
+    <view class="content">
+        <view class="title">过往交流</view>
+        <view class="list">
+            <view class="item" wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+                <view class="my">我的留言：{{x.message}}</view>
+                <view class="servicer">
+                    <block wx:if="{{x.replyDetailDTOList.length>0}}">
+                        <view class="answer" wx:for="{{x.replyDetailDTOList}}" wx:for-item="i" wx:for-index="j" wx:key="id">
+                            回复（{{j+1}}）：{{i.replyContent}}
+                        </view>
+                    </block>
+                    <view class="wait" wx:else>等待客服回复</view>
+                </view>
+            </view>
+            
+        </view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "quantity": "/components/quantity/quantity",
+    "sd": "/components/slide-del/slide-del"
+  }
+}

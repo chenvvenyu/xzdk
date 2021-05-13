@@ -1,0 +1,13 @@
+/* pages/star/star.wxss */
+.star{ height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #333EDD;}
+.star image{ width: 100%; height: 100%;}
+
+.seting{ font-size: 13px; width: 100%; position: fixed; left: 0; top: 30vh;}
+.seting button{ font-size: 13px;}
+
+.open-city{ height: 100vh; width: 100vw; background: #fff; z-index: 10; left: 0; display: flex; align-items: center; flex-flow: column; position: fixed; transition: all 0.5s;}
+.open-city-hide{ top: -100vh;}
+.open-city-show{ top: 0;}
+.oc-title{ font-size: 16px; display: flex; align-items: center; justify-content: center; flex-flow: column; padding: 60rpx 0; color: #999;}
+.oc-list{ display: flex; flex-wrap: wrap;}
+.oc-list view{ background: #a92f46; color: #fff; font-size: 15px; padding: 20rpx 30rpx; display: flex; align-items: center; justify-content: center; border-radius: 10rpx; margin: 20rpx; flex-shrink: 0;}

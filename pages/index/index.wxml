@@ -1,0 +1,22 @@
+<!--pages/index/index.wxml-->
+<view class="index">
+	<swiper class="i-swiper">
+		<swiper-item class="item" wx:for="{{bannerListt}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+			<navigator class="a">
+				<image src="{{x.image}}"></image>
+			</navigator>
+		</swiper-item>
+	</swiper>
+	<view class="menu-list">
+		<block wx:for="{{menuList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+			<navigator url="{{x.open?x.url:''}}" bindtap="{{x.open?'':'noOpenFn'}}" hover-class="none" class="item">
+				<image src="{{x.src}}"></image>
+				<view class="info">
+					<view class="title">{{x.title}}</view>
+					<view class="describe">{{x.describe}}</view>
+					<view class="describe" style="font-size:24rpx">{{x.describe2}}</view>
+				</view>
+			</navigator>
+		</block>
+	</view>
+</view>

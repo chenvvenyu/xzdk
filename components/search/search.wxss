@@ -1,0 +1,5 @@
+/* components/search/search.wxss */
+.search{ display: flex; align-items: center; justify-content: center; padding: 20rpx 0; position: relative; z-index: 100;}
+.search-box{ display: flex; align-items: center; width: 700rpx; background: #cfcfcf; border-radius: 14rpx; overflow: hidden;}
+.search icon{ margin: 0 20rpx;}
+.search input{ flex: 1;}

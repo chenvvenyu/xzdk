@@ -1,0 +1,12 @@
+<!--components/countDown/countDown.wxml-->
+<view class='countDown' style='border:{{borderColor}} 1px solid;background-color:{{backgroundColor}};width:{{width}};height:{{height}};font-size:{{fontSize}}'>
+    <view class='cd-hday' style="background:{{itemBG}};color:{{itemCo}}" wx:if="{{day>0}}">{{day}}</view>
+    <view class='cd-colon' style="color:{{mCo}}" wx:if="{{day>0}}">{{isSymbols?':':'天'}}</view>
+    <view class='cd-hour' style="background:{{itemBG}};color:{{itemCo}}" wx:if="{{hour>0}}">{{hour}}</view>
+    <view class='cd-colon' style="color:{{mCo}}" wx:if="{{hour>0}}">{{isSymbols?':':'时'}}</view>
+    <view class='cd-minute' style="background:{{itemBG}};color:{{itemCo}}">{{minute}}</view>
+    <view class='cd-colon' style="color:{{mCo}}">{{isSymbols?':':'分'}}</view>
+    <view class='cd-second' style="background:{{itemBG}};color:{{itemCo}}">{{second}}</view>
+    <view class='cd-colon' style="color:{{mCo}}" wx:if="{{!isSymbols}}">秒</view>
+    
+</view>

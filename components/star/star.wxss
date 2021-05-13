@@ -1,0 +1,5 @@
+/* components/star/star.wxss */
+.star{ position: relative;}
+.star-unselected{ display: flex; align-items: center;}
+.star-unselected view{ color: #EEEEEE;}
+.star-selected{ display: flex; align-items: center; position: absolute; left: 0; top: 0; z-index: 30;}

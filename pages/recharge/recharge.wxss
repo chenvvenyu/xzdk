@@ -1,0 +1,25 @@
+/* pages/recharge/recharge.wxss */
+page{ background: #f5f5f5;}
+
+.r-choice-money{ background: #fff; padding-bottom: 50rpx;}
+.r-cm-title{ padding: 30rpx;}
+.r-cm-list{ display: flex; flex-wrap: wrap;}
+.r-cml-li{ width: 210rpx; margin-left: 30rpx; box-sizing: border-box; border: #e5e5e5 1px solid; border-radius: 10rpx; height: 120rpx; display: flex; align-items: center; justify-content: center; flex-flow: column; transition: all 0.5s; margin-bottom: 30rpx;}
+.r-cml-li text{ color: #333333; font-size: 48rpx; transition: all 0.5s;}
+.r-cml-li view{ color: #9F9E9C; font-size: 24rpx; transition: all 0.5s;}
+.r-cm-list view.tab{ border: #2E6DFB 1px solid; color: #2E6DFB;}
+.r-cm-list view.tab text{ color: #2E6DFB;}
+.r-cm-list view.tab view{ color: #2E6DFB;}
+
+.r-pay-type{ margin-top: 20rpx; background: #fff;}
+.r-pt-title{ font-size: 16px; font-weight: bold; margin: 0 auto; border-bottom: #f5f5f5 1px solid; width: 690rpx; padding: 30rpx 0;}
+.r-pt-list{ padding: 30rpx;}
+.r-ptl-li{ display: flex; align-items: center; justify-content: space-between; padding: 20rpx;}
+.r-ptl-li view{ display: flex; align-items: center;}
+.r-ptl-li view text:nth-child(1){ font-size: 26px;}
+.r-ptl-li view text:nth-child(2){ color: #333333; font-size: 18px; margin-left: 15rpx;}
+
+.color-9c2630{ color: #9c2630;}
+.color-09bb07{ color: #09bb07;}
+
+.r-cml-li-input{ font-size: 30rpx; text-align: center; color: #333;}

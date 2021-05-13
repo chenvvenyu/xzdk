@@ -1,0 +1,119 @@
+<!--pages/shop/shop.wxml-->
+<view class="shop">
+    <!-- <view class="search">
+        <view class="left">
+            <image class="a" src="/static/img/loaction.png"></image>
+            <view class="p">孵化园孵化园</view>
+            <image class="b" src="/static/img/right.png"></image>
+        </view>
+        <view class="right">
+            <icon class="ico" type="search"></icon>
+            <input type="text" class="input" placeholder="输入商品名称"></input>
+        </view>
+    </view> -->
+    <view class="shop-swiper">
+        <swiper class="i-swiper">
+            <swiper-item class="item" wx:for="{{banner3}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+                <navigator hover-class="none" class="a">
+                    <image src="{{x.image}}"></image>
+                </navigator>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="menu">
+        <navigator url="/pages/store-list/store-list?id={{x.indexCategoryId}}" hover-class="none" class="item" wx:for="{{pageData.indexCategoryDTOList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+            <image src="{{x.image}}" class="img"></image>
+            <view class="p">{{x.name}}</view>
+        </navigator>
+    </view>
+    <view class="add">
+        <swiper class="add-swiper" indicator-dots="{{true}}" indicator-color="#fff" indicator-active-color="#2044FF">
+            <swiper-item class="item" wx:for="{{banner4}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+                <navigator hover-class="none" class="a">
+                    <image src="{{x.image}}"></image>
+                </navigator>
+            </swiper-item>
+        </swiper>
+    </view>
+    <scroll-view class="one" scroll-x="{{true}}">
+        <block wx:for="{{pageData.activityProductDTOList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+            <navigator hover-class="none" class="item">
+                <image class="img" src="{{x.productDTO.image}}"></image>
+                <view class="p ellipsis-two-line">{{x.productDTO.name}}</view>
+                <view class="other">
+                    <view class="price">
+                        <text class="a">￥</text>
+                        <text class="b">{{x.productDTO.price}}</text>
+                    </view>
+                    <!-- <view class="addToCar">
+                        <image class="plus" src="/static/img/plus.png"></image>
+                    </view> -->
+                </view>
+            </navigator>
+        </block>
+    </scroll-view>
+    <view class="two">
+        <image class="bg" src="{{pageData.businessDTO.backgroundImage}}"></image>
+        <view class="content">
+            <image class="store" src="{{pageData.businessDTO.businessAvatar}}"></image>
+            <view class="other">
+                <view class="a">{{pageData.businessDTO.businessName}}</view>
+                <view class="b">
+                    <view class="left">
+                        <!-- <view class="iconfont icon-xing"></view>
+                        <text class="p">4.5</text> -->
+                        <!-- <text class="price">配送费￥{{pageData.bearFreight}}</text> -->
+                        <text class="price">距离{{pageData.businessDTO.apartDistance}}km</text>
+                    </view>
+                    <!-- <view class="right">{{pageData.businessDTO.apartDistance}}km</view> -->
+                </view>
+            </view>
+        </view>
+        <view class="bottom"></view>
+    </view>
+    <scroll-view class="one store-product" scroll-x="{{true}}">
+        <block wx:for="{{pageData.businessDTO.productDTOList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+            <navigator hover-class="none" url="/pages/store-detail/store-detail?id={{x.businessId}}" class="item">
+                <image class="img" src="{{x.image}}"></image>
+                <view class="p ellipsis-two-line">{{x.name}}</view>
+                <view class="other">
+                    <view class="price">
+                        <text class="a">￥</text>
+                        <text class="b">{{x.price}}</text>
+                    </view>
+                    <!-- <view class="addToCar">
+                        <image class="plus" src="/static/img/plus.png"></image>
+                    </view> -->
+                </view>
+            </navigator>
+        </block>
+    </scroll-view>
+    <view class="three">
+        <view class="title">附近店铺</view>
+        <view class="i-g-store-list">
+			<block wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+				<navigator url="/pages/store-detail/store-detail?id={{x.businessId}}" hover-class="none" class="i-gsl-item">
+					<image src="{{x.businessAvatar}}"></image>
+					<view>
+						<view class="i-gsli-1">{{x.businessName}}</view>
+						<view class="i-gsli-2">
+							<!-- <view>
+								<text class="iconfont icon-xing"></text>
+								<text>{{x.score}}</text>
+							</view> -->
+							<view>
+								<text>销售</text>
+								<text>{{x.businessTotalSale}}</text>
+							</view>
+						</view>
+						<view class="i-gsli-3">
+							<!-- <text>配送费￥{{x.delivery}}</text> -->
+							<text>{{x.apartDistance}}km</text>
+						</view>
+					</view>
+				</navigator>
+			</block>
+        </view>
+        <bl url="/api/v1/shop/business/list" id="bottomLoad" name="shop" wdata="{{wdata}}" bind:backData="getList"></bl>
+    </view>
+</view>

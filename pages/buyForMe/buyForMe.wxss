@@ -1,0 +1,32 @@
+/* pages/buyForMe/buyForMe.wxss */
+.swiper{ position: relative; z-index: 100;}
+.swiper .item .a .img{ width: 750rpx; height: 350rpx;}
+
+.menu{ position: relative; z-index: 100; width: 710rpx; background: #fff; border-radius: 16rpx; margin: -50rpx auto 0 auto; height: 440rpx; position: relative; z-index: 100;}
+.menu .title{ padding: 30rpx; border-bottom: #F5F5F5 1rpx solid; display: flex; align-items: center; justify-content: space-between;}
+.menu .title .p{ color: #999999; font-size: 32rpx;}
+.menu .title .bt{ color: #ffffff; font-size: 32rpx; width: 176rpx; height: 80rpx; border-radius: 44rpx; background: #2044FF; display: flex; align-items: center; justify-content: center;}
+.menu .list{ display: flex; flex-wrap: wrap; padding: 35rpx 0;}
+.menu .list .item{ display: flex; align-items: center; justify-content: center; flex-flow: column; width: 25%; padding: 15rpx 0;}
+.menu .list .item .img{ width: 48rpx; height: 48rpx;}
+.menu .list .item .p{ color: #333333; margin-top: 5rpx; font-size: 24rpx;}
+
+.other{ position: relative; z-index: 100; margin-top: 15rpx;}
+.other .title{ padding: 15rpx 30rpx 0 30rpx; color: #333333; font-size: 32rpx; font-weight: bold;}
+.other .list{ padding: 0 20rpx; display: flex; flex-wrap: wrap; justify-content: space-between;}
+.other .list .item{ margin-top: 20rpx; width: 345rpx; background: #fff; border-radius: 16rpx; padding: 24rpx 0;}
+.other .list .item .one{ display: flex; align-items: center;}
+.other .list .item .one .img{ width: 64rpx; height: 64rpx; margin-left: 44rpx;}
+.other .list .item .one .right{ margin-left: 24rpx;}
+.other .list .item .one .right .p1{ color: #333333; font-weight: bold; font-size: 28rpx;}
+.other .list .item .one .right .p2{ color: #666666; font-size: 20rpx;}
+.other .list .item .two{ text-align: center; color: #FEA41D; font-size: 22rpx; margin-top: 50rpx;}
+
+.footer{ position: fixed; left: 0; bottom: 0; width: 100%; z-index: 90;}
+.footer .title{ display:flex; color: #ccc; font-size: 28rpx; align-items: center; justify-content: center;}
+.footer .title::before{ content: ""; width: 200rpx; height: 1px; background-image: linear-gradient(to right, #f7f7f7 , #ccc); margin-right: 20rpx;}
+.footer .title::after{ content: ""; width: 200rpx; height: 1px; background-image: linear-gradient(to left, #f7f7f7 , #ccc); margin-left: 20rpx;}
+.footer .list{ display: flex; align-items: center; justify-content: center; padding: 30rpx 0;}
+.footer .list .item{ display: flex; align-items: center; justify-content: center; flex-flow: column; margin: 0 60rpx;}
+.footer .list .item .img{ width: 48rpx; height: 48rpx;}
+.footer .list .item .p{ color: #CCCCCC; font-size: 22rpx;}

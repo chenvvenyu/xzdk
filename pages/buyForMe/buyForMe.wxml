@@ -1,0 +1,92 @@
+<!--pages/buyForMe/buyForMe.wxml-->
+<view class="buyForMe">
+    <swiper class="swiper">
+        <swiper-item class="item">
+            <navigator hover-class="none" class="a">
+                <image src="/static/img/base/400.png" class="img"></image>
+            </navigator>
+        </swiper-item>
+    </swiper>
+    <view class="menu">
+        <view class="title">
+            <text class="p">想买点什么</text>
+            <view class="bt">下单</view>
+        </view>
+        <view class="list">
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-1.png" class="img"></image>
+                <text class="p">买菜</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-2.png" class="img"></image>
+                <text class="p">日用</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-3.png" class="img"></image>
+                <text class="p">饮料</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-4.png" class="img"></image>
+                <text class="p">小吃</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-5.png" class="img"></image>
+                <text class="p">咖啡</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-6.png" class="img"></image>
+                <text class="p">药品</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-7.png" class="img"></image>
+                <text class="p">酒水</text>
+            </navigator>
+            <navigator hover-class="none" class="item">
+                <image src="/static/img/buyForMe-8.png" class="img"></image>
+                <text class="p">果蔬</text>
+            </navigator>
+        </view>
+    </view>
+    <view class="other">
+        <view class="title">大牌购买</view>
+        <view class="list">
+            <view class="item">
+                <view class="one">
+                    <image src="/static/img/shop.png" class="img"></image>
+                    <view class="right">
+                        <view class="p1">便利店</view>
+                        <view class="p2">月售 3129</view>
+                    </view>
+                </view>
+                <view class="two">全城代购、不限品类</view>
+            </view>
+            <view class="item">
+                <view class="one">
+                    <image src="/static/img/shop-car.png" class="img"></image>
+                    <view class="right">
+                        <view class="p1">便利店</view>
+                        <view class="p2">月售 3129</view>
+                    </view>
+                </view>
+                <view class="two">全城代购、不限品类</view>
+            </view>
+        </view>
+    </view>
+    <view class="footer">
+        <view class="title">跑腿特色</view>
+        <view class="list">
+            <view class="item">
+                <image src="/static/img/footer-1.png" class="img"></image>
+                <text class="p">全城跑腿</text>
+            </view>
+            <view class="item">
+                <image src="/static/img/footer-2.png" class="img"></image>
+                <text class="p">全天服务</text>
+            </view>
+            <view class="item">
+                <image src="/static/img/footer-3.png" class="img"></image>
+                <text class="p">放心代购</text>
+            </view>
+        </view>
+    </view>
+</view>

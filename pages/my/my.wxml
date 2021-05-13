@@ -1,0 +1,89 @@
+<!--pages/my/my.wxml-->
+<view class="my">
+	<view class="bg">
+		<view class="one">
+            <view class="left" wx:if="{{bindFlag}}">
+                <image class="img" src="{{userInfo.avatar}}"></image>
+				<view class="info">
+					<view class="name">{{userInfo.nickname}}</view>
+					<view class="level">
+						<image mode="widthFix" src="/static/img/level.png"></image>
+					</view>
+				</view>
+            </view>
+            <navigator hover-class="none" url="/pages/authorize/authorize" class="left" wx:else>
+				<image class="img" src="/static/img/base/mr.png"></image>
+				<view class="info">
+					<view class="name">游客</view>
+					<view class="level">
+						<image mode="widthFix" src="/static/img/level.png"></image>
+					</view>
+				</view>
+			</navigator>
+			<!-- <navigator hover-class="none" class="right">
+				<image class="img" src="/static/img/set.png"></image>
+			</navigator> -->
+		</view>
+		<navigator hover-class="none" class="two">
+			<image class="img" src="/static/img/add-vip.png" mode="widthFix"></image>
+		</navigator>
+	</view>
+	<view class="three">
+        <view class="title">我的关注</view>
+        <view class="list">
+            <navigator url="/pages/my-balance/my-balance" hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-1.png"></image>
+                <text class="p">我的钱包</text>
+            </navigator>
+            <navigator url="/pages/address-list/address-list" hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-2.png"></image>
+                <text class="p">地址簿</text>
+            </navigator>
+            <navigator url="/pages/wait-coupon/wait-coupon" hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-3.png"></image>
+                <text class="p">待领取优惠券</text>
+            </navigator>
+            <navigator url="/pages/coupon/coupon" hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-4.png"></image>
+                <text class="p">优惠券</text>
+            </navigator>
+        </view>
+    </view>
+	<view class="four">
+        <view class="title">常用功能</view>
+        <view class="list">
+            <!-- <navigator hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-5.png"></image>
+                <text class="p">实名认证</text>
+            </navigator> -->
+            <!-- <navigator hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-6.png"></image>
+                <text class="p">发票申请</text>
+            </navigator> -->
+            <!-- <navigator hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-7.png"></image>
+                <text class="p">活动中心</text>
+            </navigator> -->
+            <!-- <navigator hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-8.png"></image>
+                <text class="p">意见反馈</text>
+            </navigator> -->
+            <!-- <navigator hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-9.png"></image>
+                <text class="p">使用帮助</text>
+            </navigator> -->
+            <button open-type="contact" class="item bt">
+                <image class="img" src="/static/img/my-arrow-10.png"></image>
+                <text class="p">联系客服</text>
+            </button>
+            <view class="item" bindtap="scanCode">
+                <image class="img" src="/static/img/scan.png"></image>
+                <text class="p">扫码绑定</text>
+            </view>
+            <navigator url="/pages/search/search" hover-class="none" class="item">
+                <image class="img" src="/static/img/my-arrow-6.png"></image>
+                <text class="p">查快递</text>
+            </navigator>
+        </view>
+    </view>
+</view>

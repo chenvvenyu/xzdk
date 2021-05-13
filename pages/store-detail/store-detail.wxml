@@ -1,0 +1,106 @@
+<!--pages/store-detail/store-detail.wxml-->
+<view class="store-detail" wx:if="{{pageData}}">
+	<view class="sd-a">
+		<image mode="widthFix" src="{{pageData.backgroundImage}}"></image>
+	</view>
+	<view class="sd-b all-yy">
+		<image class="sd-b-1" src="{{pageData.businessAvatar}}"></image>
+		<view class="sd-b-2">{{pageData.businessName}}</view>
+		<view class="i-gsli-2">
+			<!-- <view>
+				<text class="iconfont icon-xing"></text>
+				<text>{{pageData.score}}</text>
+			</view>
+			<view>
+				<text>配送费</text>
+				<text>￥{{pageData.delivery}}</text>
+			</view> -->
+			<view>
+				<text>销售</text>
+				<text>{{pageData.totalSale}}</text>
+			</view>
+		</view>
+		<view class="sd-b-3">地址：{{pageData.provinceName}}，{{pageData.cityName}}，{{pageData.regionName}}</view>
+	</view>
+	<!-- <view class="sd-c">
+		<view class="sd-c-itme {{storeTab==1?'sd-c-tab':''}}" data-index="1" catchtap="storeTabFn">
+			<view>
+				<text>点餐</text>
+			</view>
+		</view>
+		<view class="sd-c-itme {{storeTab==2?'sd-c-tab':''}}" data-index="2" catchtap="storeTabFn">
+			<view>
+				<text>评价</text>
+				<text>{{pageData.totalComment}}+</text>
+			</view>
+		</view>
+		<view class="sd-c-itme {{storeTab==3?'sd-c-tab':''}}" data-index="3" catchtap="storeTabFn">
+			<view>
+				<text>商家</text>
+			</view>
+		</view>
+	</view> -->
+	<!-- 点餐 -->
+	<block wx:if="{{storeTab==1}}">
+		<view class="backTop" catchtap="backTop" wx:if="{{backTopShow}}">
+			<view class="iconfont icon-shangla"></view>
+		</view>
+		<swiper class="sd-d" indicator-dots="true" indicator-color="#fff" indicator-active-color="#FF4700">
+			<!-- <block wx:for="{{add}}" wx:for-index="y" wx:for-item="x" wx:key="id"> -->
+				<swiper-item>
+					<image src="{{pageData.addImg}}" catchtap="addLinkTo"></image>
+				</swiper-item>
+			<!-- </block> -->
+		</swiper>
+		<view class="sd-f">
+			<scroll-view scroll-y="{{canScroll}}" class="sd-f-left">
+				<view class="sd-fl-item {{listIndex==y?'sd-fl-item-active':''}}" data-y="{{y}}" catchtap="listTab" wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+					<text class="iconfont icon-rexiao" wx:if="{{x.name=='热销'}}"></text>
+					<view>{{x.name}}</view>
+				</view>
+				<view style="height:140rpx;"></view>
+			</scroll-view>
+			<view class="sd-f-right">
+				<scroll-view scroll-y="{{canScroll}}" scroll-into-view="{{rightScrollLoaction}}" scroll-with-animation="true" class="sd-fr-list" bindscroll="rightScroll">
+					<block wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+						<view class="sd-fr-title" id="right{{y}}" data-top="{{x.top}}">{{x.name}}</view>
+						<view class="sd-fr-item" wx:for="{{x.productDTOList}}" wx:for-item="i" wx:for-index="j" wx:key="productId">
+							<navigator url="/pages/product-detail/product-detail?p={{pageData.delivery}}&id={{i.productId}}{{i.num>0?'&num='+i.num:''}}" hover-class="none">
+								<image lazy-load="{{true}}" src="{{i.image}}" lazy-load="true"></image>
+							</navigator>
+							<view class="sd-fri-content">
+								<navigator url="/pages/product-detail/product-detail?p={{pageData.delivery}}&id={{i.productId}}{{i.num>0?'&num='+i.num:''}}" hover-class="none" class="sd-fric-1" style="{{i.stock==0?'color:#999':''}}">{{i.name}}</navigator>
+								<navigator url="/pages/product-detail/product-detail?p={{pageData.delivery}}&id={{i.productId}}{{i.num>0?'&num='+i.num:''}}" hover-class="none" class="sd-fric-2">销售：{{i.totalSale}}，库存：{{i.stock}}</navigator>
+								<view class="sd-fric-3">
+									<view style="{{i.stock==0?'color:#999':''}}">
+										<text>￥</text>
+										<text>{{i.price}}</text>
+										<!-- <text>￥{{i.price}}</text> -->
+									</view>
+									<quantity id="quantity{{y}}{{j}}" inputRedonly="{{true}}" inputNum="{{i.num}}" inputNumMin="0" a="{{y}}" b="{{j}}" bind:backData="getNum" wx:if="{{i.stock > 0}}"></quantity>
+									<view style="color:red" wx:else>今日已售罄</view>
+								</view>
+							</view>
+						</view>
+					</block>
+					<view style="height:100rpx;"></view>
+				</scroll-view>
+			</view>
+			<view class="sd-g {{totalNum>0?'have':''}}">
+				<view class="sd-g-left">
+					<navigator url="/pages/shop-car/shop-car" class="sd-gl-1">
+						<view class="iconfont icon-gouwu"></view>
+						<text wx:if="{{totalNum>0}}">{{totalNum}}</text>
+					</navigator>
+					<view class="sd-gl-2">
+						<text wx:if="{{totalPrice==0}}">购物车空空如也~~</text>
+						<text wx:else>￥{{totalPrice}}</text>
+						<text>配送费￥{{pageData.delivery}}</text>
+					</view>
+				</view>
+				<view class="sd-g-right" wx:if="{{totalNum==0}}">选购商品</view>
+				<view class="sd-g-right" catchtap="sub" wx:else>去结算</view>
+			</view>
+		</view>
+	</block>
+</view>

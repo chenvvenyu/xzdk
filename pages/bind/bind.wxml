@@ -1,0 +1,23 @@
+<!--pages/bind/bind.wxml-->
+<view class="bind">
+	<view class="bind-title">
+		<image mode="widthFix" src="/static/img/logo.jpg"></image>
+	</view>
+	<view class="b-content">
+		<view class="b-input-1">
+			<input type="number" maxlength="11" data-name="subData.userNo" placeholder="请输入手机号" bindinput="twobind"></input>
+		</view>
+		<view class="b-input-1">
+			<input type="number" data-name="subData.verify" placeholder="请输入验证码" bindinput="twobind"></input>
+			<text bindtap="getCode">{{getCodeFont}}</text>
+		</view>
+		<view class="b-input-1">
+			<input type="text" data-name="subData.inviteCode" value="{{subData.inviteCode}}" placeholder="请输入邀请码，没有可不填" bindinput="twobind"></input>
+		</view>
+        <view class="b-c-prop"></view>
+	</view>
+
+	<view class="fix-bt" bindtap="sub">
+		<view>绑定手机</view>
+	</view>
+</view>

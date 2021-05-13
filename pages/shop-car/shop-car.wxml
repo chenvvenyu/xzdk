@@ -1,0 +1,37 @@
+<!--pages/shop-car/shop-car.wxml-->
+<view class="shop-car" wx:if="{{list.length>0}}">
+	<view class="sc-store" wx:for="{{list}}" wx:for-index="y" wx:for-item="x" wx:key="id">
+		<view class="sc-s-title">
+			<navigator url="/pages/store-detail/store-detail?id={{x.businessId}}" hover-class="none">
+				<view>{{x.businessDTO.businessName}}</view>
+				<text class="iconfont icon-right"></text>
+			</navigator>
+			<!-- <view class="iconfont icon-shanchu" data-y="{{y}}" catchtap="delStore"></view> -->
+		</view>
+		<view class="sc-s-product-list">
+			<block wx:for="{{x.userCartDTOList}}" wx:for-index="j" wx:for-item="i" wx:key="userCartId">
+				<sd frameH="135" frameW="650" indexA="{{y}}" indexB="{{j}}" bind:del="delPro">
+					<view class="sc-spl-item">
+						<image src="{{i.productDTO.image}}"></image>
+						<view class="sc-spli-content">
+							<view class="ellipsis">{{i.productDTO.name}}</view>
+							<view>
+								<text>￥{{i.productDTO.price}}</text>
+								<quantity id="quantity{{i.id}}" inputNumMin="1" inputNum="{{i.num}}" a="{{y}}" b="{{j}}" bind:backData="getNum"></quantity>
+							</view>
+						</view>
+					</view>
+				</sd>
+			</block>
+		</view>
+		<view class="sc-s-pay">
+			<text>合计</text>
+			<text>￥{{x.totalPrice}}</text>
+			<view data-y="{{y}}" catchtap="sub">结算</view>
+		</view>
+	</view>
+</view>
+<view class="empty" wx:else>
+	<image mode="widthFix" src="/static/img/base/empty-sc.png"></image>
+	<text>购物车空空如也，快去选购商品吧</text>
+</view>

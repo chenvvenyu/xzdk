@@ -1,0 +1,16 @@
+/* pages/authorize/authorize.wxss */
+.authorize{ height: 100vh; background: #fff; align-items: center; justify-content: center;}
+.authorize-title{ display: flex; align-items: center; justify-content: center; font-size: 30rpx; padding: 60rpx;}
+.authorize-tips{ display: flex; align-items: center; justify-content: center; flex-flow: column; font-size: 28rpx; color: #999;}
+.authorize-img{ display: flex; align-items: center; justify-content: center; margin-top: 60rpx;}
+.authorize-img image{ width: 400rpx; border: #ccc 1px solid;}
+.authorize-bt{ display: flex; align-items: center; justify-content: center; margin-top: 60rpx;}
+.authorize-bt navigator{ width: 200rpx; height: 70rpx; display: flex; align-items: center; justify-content: center; color: #09bb07; background: #ededed; font-size: 30rpx; border-radius: 10rpx; letter-spacing: 5rpx; margin-right: 60rpx;}
+.authorize-bt button{ width: 200rpx; height: 70rpx; display: flex; align-items: center; justify-content: center; color: #fff; background: #f7ce72; font-size: 30rpx; border-radius: 10rpx; letter-spacing: 5rpx; margin: 0;}
+.authorize-bt button::after{ border: 0;}
+.authorize-bt button:not([size='mini']){ margin: 0; width: 200rpx; font-weight: normal;}
+
+.authorize-phone{ display: flex; align-items: center; justify-content: center; margin-top: 60rpx;}
+.authorize-phone button{ color: #fff; background: #f7ce72; font-size: 30rpx; border-radius: 10rpx; letter-spacing: 5rpx;}
+.authorize-phone button::after{ border: 0;}
+.authorize-phone button:not([size='mini']){ margin: 0; width: 400rpx; font-weight: normal;}

@@ -1,0 +1,7 @@
+/* components/countDown/countDown.wxss */
+.countDown{ display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 10rpx;}
+.cd-hour{}
+.cd-minute{}
+.cd-second{}
+.cd-colon{ color: #a92f46; margin: 0 5rpx;}
+.cd-hday,.cd-hour,.cd-minute,.cd-second{ padding: 5rpx; border-radius: 10rpx;}

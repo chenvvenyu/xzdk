@@ -1,0 +1,219 @@
+{
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
+    },
+    "setting": {
+        "urlCheck": true,
+        "es6": true,
+        "enhance": false,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": false,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "bundle": false,
+        "useIsolateContext": true,
+        "useCompilerModule": true,
+        "userConfirmedUseCompilerModuleSwitch": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.14.0",
+    "appid": "wx07c7d459f4f28678",
+    "projectname": "%E4%BA%AB%E6%8C%87%E5%90%8C%E5%9F%8E",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "scripts": {},
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "首页-寄快递",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "查快递",
+                    "pathName": "pages/lookup/lookup",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "个人中心",
+                    "pathName": "pages/my/my",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "地址列表（寄件人，收件人）",
+                    "pathName": "pages/address-list/address-list",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": 4,
+                    "name": "地址（新增，修改）",
+                    "pathName": "pages/address-edit/address-edit",
+                    "query": "type=edit&id=3",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "我的余额",
+                    "pathName": "pages/my-balance/my-balance",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "帮我买",
+                    "pathName": "pages/buyForMe/buyForMe",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "帮我买-下单",
+                    "pathName": "pages/buyForMe-sub/buyForMe-sub",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "订单详情（快递，跑腿）",
+                    "pathName": "pages/express-order-detail/express-order-detail",
+                    "query": "id=48&type=1",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "优惠券",
+                    "pathName": "pages/coupon/coupon",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "帮我送",
+                    "pathName": "pages/sendForMe/sendForMe",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "订单支付-确定订单",
+                    "pathName": "pages/help-order-detail/help-order-detail",
+                    "query": "id=50",
+                    "scene": null
+                },
+                {
+                    "id": 12,
+                    "name": "起始页",
+                    "pathName": "pages/start/start",
+                    "query": "p=c",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "授权",
+                    "pathName": "pages/authorize/authorize",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "寄快递",
+                    "pathName": "pages/send-express/send-express",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "物品信息",
+                    "pathName": "pages/goods-info/goods-info",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "查快递",
+                    "pathName": "pages/lookup/lookup",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "商城首页",
+                    "pathName": "pages/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "订单支付界面",
+                    "pathName": "pages/order-pay/order-pay",
+                    "query": "id=50",
+                    "scene": null
+                },
+                {
+                    "name": "店铺详情",
+                    "pathName": "pages/store-detail/store-detail",
+                    "query": "id=1",
+                    "scene": null
+                },
+                {
+                    "name": "购物车",
+                    "pathName": "pages/shop-car/shop-car",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "收费规则",
+                    "pathName": "pages/charge-rule/charge-rule",
+                    "query": "id=3",
+                    "scene": null
+                },
+                {
+                    "name": "评价",
+                    "pathName": "pages/order-evaluate/order-evaluate",
+                    "query": "id=109",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

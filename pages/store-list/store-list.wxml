@@ -1,0 +1,46 @@
+<!--pages/store-list/store-list.wxml-->
+<view class="store-list">
+	<view class="i-b">
+		<view>
+			<text class="iconfont icon-chazhao"></text>
+			<input placeholder="输入商家名称" confirm-type="search" bindconfirm="setKeyword"></input>
+		</view>
+	</view>
+	<view class="sl-a">
+		<!-- <view class="i-g-sort">
+			<block wx:for="{{tabList}}" wx:for-index="y" wx:for-item="x" wx:key="id">
+				<view class="i-gs-item {{tab==x.type?'i-gs-choice':''}}" data-y="{{y}}" bindtap="tab">
+					<view>{{x.title}}</view>
+					<text class="iconfont icon-xiala-xia {{x.order?'':'i-gsc-rotate-180'}}"></text>
+				</view>
+			</block>
+		</view> -->
+		<view class="i-g-store-list" wx:if="{{list.length > 0}}">
+			<block wx:for="{{list}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+				<navigator url="/pages/store-detail/store-detail?id={{x.businessId}}" hover-class="none" class="i-gsl-item">
+					<image src="{{x.businessAvatar}}"></image>
+					<view>
+						<view class="i-gsli-1">{{x.businessName}}</view>
+						<view class="i-gsli-2">
+							<!-- <view>
+								<text class="iconfont icon-xing"></text>
+								<text>{{x.score}}</text>
+							</view> -->
+							<view>
+								<text>销售</text>
+								<text>{{x.businessTotalSale}}</text>
+							</view>
+						</view>
+						<view class="i-gsli-3">
+							<!-- <text>配送费￥{{x.delivery}}</text> -->
+							<text>{{x.apartDistance}}km</text>
+						</view>
+					</view>
+				</navigator>
+			</block>
+		</view>
+		<view class="other-store">其他店铺将会陆续开放</view>
+		<view class="tips" wx:if="{{list.length==0}}">没有搜索到相关店铺</view>
+	</view>
+    <bl url="/api/v1/shop/business/list" id="bottomLoad" name="shop" wdata="{{wdata}}" bind:backData="getList"></bl>
+</view>

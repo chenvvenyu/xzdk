@@ -1,0 +1,22 @@
+<!--components/screen/screen.wxml-->
+<view class="screen">
+    <view class="screen-left {{screenShow?'left-show':''}}" catchtap="displayChange"></view>
+    <view class="screen-right {{screenShow?'right-show':''}}">
+        <scroll-view scroll-y="true" class="screen-content">
+            <block wx:for="{{list}}" wx:for-index="y" wx:for-item="x" wx:key="parameterId">
+                <view class="sc-ul">
+                    <view class="sc-u-title">{{x.pname}}</view>
+                    <view class="sc-u-li">
+                        <block wx:for="{{x.children}}" wx:for-index="j" wx:for-item="i" wx:key="id">
+                            <view data-y="{{y}}" data-j="{{j}}" class="{{i.select?'select':''}}" catchtap="selectThis">{{i.name}}</view>
+                        </block>
+                    </view>
+                </view>
+            </block>
+        </scroll-view>
+        <view class="sc-complete">
+            <view catchtap="reset">重置</view>
+            <view catchtap="complete">确定</view>
+        </view>
+    </view>
+</view>

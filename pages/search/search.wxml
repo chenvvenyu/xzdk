@@ -1,0 +1,103 @@
+<!--pages/search/search.wxml-->
+<view class="search-yd">
+	<view class="fix-top all-yy">
+		<view class="search">
+			<view class="left">
+				<icon class="icon" type="search" color="#B3B3B3" size="22"></icon>
+				<input class="input" value="{{searchKey}}" placeholder="请输入运单号" confirm-type="搜索"
+					bindconfirm="searchFn"></input>
+			</view>
+		</view>
+	</view>
+	<view class="top-prop"></view>
+	<block wx:if="{{pageData}}">
+		<view class="one">
+			<view class="info all-yy">
+				<view class="no">运单号：1111{{pageData.waybillNumber}}</view>
+				<view class="route">
+					<view class="left">
+						<view class="city">{{pageData.expressAddressDTO.mailDistrictStr}}</view>
+					</view>
+					<view class="center">
+						<image mode="widthFix" class="img" src="/static/img/arrow-1.png"></image>
+						<text class="status">{{pageData.expressDTO.transportStatusStr}}</text>
+					</view>
+					<view class="right">
+						<view class="city">{{pageData.expressAddressDTO.toDistrictStr}}</view>
+					</view>
+				</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==0}}">
+					下单时间：{{pageData.expressDTO.updateTime}}</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==1}}">
+					接单时间：{{pageData.expressDTO.updateTime}}</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==3}}">
+					运输中（已揽件）：{{pageData.expressDTO.updateTime}}</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==4}}">
+					运输中（到站点）：{{pageData.expressDTO.updateTime}}</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==5}}">
+					派件（分配快递员）：{{pageData.expressDTO.updateTime}}</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==6}}">
+					派件中：{{pageData.expressDTO.updateTime}}</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==7}}">
+					完成：{{pageData.expressDTO.updateTime}}
+				</view>
+				<view class="other" wx:if="{{pageData.expressDTO.transportStatus==8}}">
+					订单已取消：{{pageData.expressDTO.updateTime}}</view>
+			</view>
+		</view>
+		<view class="three">
+			<view class="left">
+				<view class="a">寄</view>
+				<view class="line"></view>
+				<view class="b">收</view>
+			</view>
+			<view class="right">
+				<view class="a">
+					<view class="title">
+						<text class="span1">{{pageData.expressAddressDTO.mailName}}</text>
+						<text class="span2">{{pageData.expressAddressDTO.mailMobile}}</text>
+					</view>
+					<view class="p">{{pageData.expressAddressDTO.mailAddress}}</view>
+				</view>
+				<view class="b">
+					<view class="title">
+						<text class="span1">{{pageData.expressAddressDTO.toName}}</text>
+						<text class="span2">{{pageData.expressAddressDTO.toMobile}}</text>
+					</view>
+					<view class="p">{{pageData.expressAddressDTO.toAddress}}</view>
+				</view>
+				<view class="info">
+					<view class="item">包裹：{{pageData.expressDTO.expressName}}</view>
+					<view class="item">重量：{{pageData.expressDTO.expressWeight}}KG</view>
+					<view class="item">运费：{{pageData.fee}}元</view>
+					<view class="item" wx:if="{{pageData.expressType==2}}">物品金额：{{pageData.cost}}元</view>
+					<view class="item" wx:else>保价金额：{{pageData.cost}}元/{{pageData.insuredFee}}元</view>
+				</view>
+			</view>
+		</view>
+		<view class="five">
+			<view class="line">
+				<view class="content"></view>
+			</view>
+			<block wx:for="{{logList}}" wx:for-item="x" wx:for-index="y" wx:key="id">
+				<view class="item">
+					<view class="left {{y==0?'color-2044FF':'color-ccc'}}">{{x.transportStatusStr}}</view>
+					<view class="center">
+						<view class="a {{y==0?'bg-2044FF':''}}" wx:if="{{x.transportStatus==4}}">收</view>
+						<view class="b" wx:if="{{x.transportStatus!=4&&x.transportStatus!=6}}">
+							<view class="dian"></view>
+						</view>
+						<view class="a {{y==0?'bg-2044FF':''}}" wx:if="{{x.transportStatus==6}}">发</view>
+						<view class="mark" wx:if="{{y==(logList.length-1)}}"></view>
+					</view>
+					<view class="right {{y==0?'':'color-ccc'}}">
+						<view class="date">{{x.createTime}}</view>
+						<view class="content">
+							{{x.operate}}
+						</view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</block>
+</view>
