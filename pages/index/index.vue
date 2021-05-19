@@ -58,23 +58,23 @@
 				</view>
 			</view>
 		</view>
-		<view v-if="!IsShowOutlet" class="content-block-size" hidden="1">
+		<view v-if="!IsShowOutlet" class="content-block-size">
 			<view class="cont_block">
-				<view class="jj_title" hidden="1">选择寄件方式</view>
+				<view class="jj_title" >选择寄件方式</view>
 				<view class="jj-type">
-					<view @tap="TypeClick(false)" class="type-item" :class="{'type-active':!PostData.expedited}">
-						<view class="title">次日达</view>
-						<view class="image">
-							<image mode="widthFix" src="../../static/images/dt_people_03.png"></image>
-						</view>
-						<view class="tag" :style="{'background-color':!PostData.expedited? '#3399FE':'#f7f7f7','color':!PostData.expedited? '#ffffff':'#222222'}">省钱</view>
-					</view>
 					<view @tap="TypeClick(true)" class="type-item" :class="{'type-active':PostData.expedited}">
 						<view class="title">当日达</view>
 						<view class="image">
 							<image mode="widthFix" src="../../static/images/dt_fast_03.png"></image>
 						</view>
 						<view class="tag" :style="{'background-color':PostData.expedited? '#3399FE':'#f7f7f7','color':PostData.expedited? '#ffffff':'#222222'}">省时</view>
+					</view>
+					<view @tap="TypeClick(false)" class="type-item" :class="{'type-active':!PostData.expedited}">
+						<view class="title">次日达</view>
+						<view class="image">
+							<image mode="widthFix" src="../../static/images/dt_people_03.png"></image>
+						</view>
+						<view class="tag" :style="{'background-color':!PostData.expedited? '#3399FE':'#f7f7f7','color':!PostData.expedited? '#ffffff':'#222222'}">省钱</view>
 					</view>
 				</view>
 			</view>
@@ -194,7 +194,7 @@
 					"mailingProvince": "",//寄件省
 					"mailingCity": "",//寄件市
 					"mailingDistrict": "",//寄件县/区
-					"mailingAddress": "从哪儿寄出?", //寄件定位名称
+						"mailingAddress": "从哪儿寄出?", //寄件定位名称
 					"mailingAddress2": '', //寄件地址
 					"mailingAddress3": '', //定位地址
 					"mailingPersonName": "点击填写寄件人信息", //寄件人
@@ -213,7 +213,7 @@
 					"receiptPhone": "", //收件人电话
 					"remark": "", //备注
 					"isProcuration": false, //是否代收货款
-					"weight": 2, //总重量kg
+					"weight": 1, //总重量kg
 					"startWeight": 0, //起步重量
 					"startPrice": 0, //起步价
 					"exceedWeight": 0, //续重（kg）
@@ -223,7 +223,7 @@
 					"couponID": 0, //优惠券ID
 					"clientPlatform": 2, //客户端枚举 0.苹果 1.安卓 2.小程序 3.公众号 4.IPad 5.安卓Pad 6.PC客户端,7.管理端
 					"fareArrivePay": false, //运费是否到付
-					"expedited": false, //是否加急
+					"expedited": true, //是否加急
 					"valet": false, //是否代客
 					"goodsInfo": "货物" ,//货品信息
 					"goodsCount":1 ,//货品件数
@@ -1055,7 +1055,7 @@
 					_self.showMsg('物品件数范围1-10！');
 					return;
 				}
-				if (!VerifyHelper.IsInt(_self.PostData.weight) || Number(_self.PostData.weight) < 2 || Number(_self.PostData.weight) > 300) {
+				if (!VerifyHelper.IsInt(_self.PostData.weight) || Number(_self.PostData.weight) < 1 || Number(_self.PostData.weight) > 300) {
 					_self.showMsg('物品重量范围2-300！');
 					return;
 				}

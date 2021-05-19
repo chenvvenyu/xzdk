@@ -25,7 +25,7 @@
 		</view>
 		<view  class="content-block-size">
 			<view class="cont_block">
-				<view class="cont-row">寄件方式：{{OrderData.expedited?'特快':'标快'}}</view>
+				<view class="cont-row">寄件方式：{{OrderData.expedited?'次日达':'当日达'}}</view>
 				<view class="cont-row">订单金额：{{OrderData.cost}} 元</view>
 				<view class="cont-row">物品分类：{{OrderData.goodsInfo}}</view>
 				<view class="cont-row">代收货款：{{OrderData.goodsPrice}} 元</view>
@@ -113,12 +113,13 @@
 				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
 					if(res.Status && res.Data){
 						let _data = res.Data;
-						
+						//次日达参数
+						let {NextdayWeightPrice,NextdayPrice}=res.Data
 						let _weight = _self.OrderData.weight;//物品重量
 						// if(_weight>=200) _weight=200;
 						let _startWeight = _data.Weight;//起始重量
 						let _startPrice = _data.Price;//起始价格
-						let _exceedWeight = _weight-_startWeight;//续重 = 物品重量 - 起始重量
+						let _exceedWeight = _weight-_startWeight;//续重 = 物品重量 - 起始重量						
 						let _exceedWeightPrice1 = _data.ExceedWeightPrice1;//续重每千克多少钱
 						
 						let _exceedWeightPrice2 = _data.ExceedWeightPrice2;//(废弃)
@@ -134,9 +135,7 @@
 						let _exceedWeightFixedPrice2 = _data.ExceedWeightFixedPrice2;//价格区间2
 						let _exceedWeightFixedPrice3 = _data.ExceedWeightFixedPrice3;//价格区间3
 						
-						 
 						let _exceedPrice = 0;//续费价格
-						console.log('_weight',_weight)
 						if(_weight > _exceedWeightRange3){//超过重量区间3
 							_self.totalMoney = _exceedWeightFixedPrice3 + _exceedPrice
 							console.log('重量超过'+_exceedWeightRange3+'千克,订单价格:'+_self.totalMoney+'元')
@@ -154,14 +153,13 @@
 							_self.totalMoney = _startPrice
 							console.log('重量'+_weight+'千克,订单价格:'+_self.totalMoney+'元')
 						}
-						
 						_self.OrderData.startWeight=_startWeight;
 						_self.OrderData.startPrice = _startPrice;
 						_self.OrderData.exceedPrice=_exceedPrice;
 						_self.OrderData.exceedWeight= _exceedPrice == 0 ? 0 : _exceedWeight;
-						
-						//_self.OrderData.expedited 0:标快 1:特快
-						_self.totalMoney =_self.OrderData.expedited ?  _self.totalMoney*_urgentCoefficient*_levelPriceDis : _self.totalMoney*_levelPriceDis;
+						//_self.OrderData.expedited 0:今日达 1:次日达
+						// _self.totalMoney =_self.OrderData.expedited ?  _self.totalMoney*_urgentCoefficient*_levelPriceDis : _self.totalMoney*_levelPriceDis;
+						_self.totalMoney =!_self.OrderData.expedited ?  (NextdayPrice + (_weight-_startWeight>0?_weight-_startWeight:0)*NextdayWeightPrice)*_levelPriceDis :  _self.totalMoney*_levelPriceDis;
 						_self.totalMoney = _self.totalMoney.toFixed(2);
 						_self.OrderData.startWeight=_startWeight;
 						_self.OrderData.cost = _self.totalMoney;
@@ -177,6 +175,7 @@
 			},
 			btnLoad:function(){
 				let _self = this;
+				console.log(_self.OrderData)
 				if(!VerifyHelper.IsInt(_self.OrderData.weight) || Number(_self.OrderData.weight)<1){
 					_self.showMsg('请重新选择物品重量！');
 					return;

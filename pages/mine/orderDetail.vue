@@ -18,7 +18,7 @@
 		<view class="order-info">
 			<view class="text">订单编号：{{OrderInfo.order.OrderNO}}</view>
 			<view class="text">订单金额：{{OrderInfo.order.Cost}} 元</view>
-			<view class="text">寄送方式：{{OrderInfo.order.Expedited?'特快':'普快'}}</view>
+			<view class="text">寄送方式：{{OrderInfo.order.Expedited?'今日达':'次日达'}}</view>
 			<view class="text">物品分类：{{OrderInfo.order.GoodsInfo}}</view>
 			<view class="text">代收货款：{{OrderInfo.order.GoodsPrice}} 元</view>
 			<view class="text">货物件数：{{OrderInfo.order.GoodsCount}} 件</view>
