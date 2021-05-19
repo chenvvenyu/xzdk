@@ -25,7 +25,7 @@
 		</view>
 		<view  class="content-block-size">
 			<view class="cont_block">
-				<view class="cont-row">寄件方式：{{OrderData.expedited?'次日达':'当日达'}}</view>
+				<view class="cont-row">寄件方式：{{OrderData.expedited?'当日达':'次日达'}}</view>
 				<view class="cont-row">订单金额：{{OrderData.cost}} 元</view>
 				<view class="cont-row">物品分类：{{OrderData.goodsInfo}}</view>
 				<view class="cont-row">代收货款：{{OrderData.goodsPrice}} 元</view>
