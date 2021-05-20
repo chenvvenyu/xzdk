@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "用户中心",
-  "usingComponents": {
-    "uni-list-item": "/components/uni-list-item/uni-list-item",
-    "uni-grid": "/components/uni-grid/uni-grid",
-    "uni-grid-item": "/components/uni-grid-item/uni-grid-item",
-    "uni-badge": "/components/uni-badge/uni-badge"
-  }
-}

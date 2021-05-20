@@ -1,2 +1,0 @@
-.warp{width:690rpx;margin:0 30rpx}.warp .coupon-item{border:1px solid #e0e0e0;box-sizing:border-box;border-radius:30rpx;height:190rpx;padding:10rpx;margin:20rpx 10rpx}.warp .coupon-item .money{width:150rpx;height:150rpx;line-height:150rpx;font-size:30px;color:#f33}.warp .coupon-item .content{width:500rpx}.warp .coupon-item .content .title{font-size:36rpx;color:#f0ad4e;font-weight:700}.warp .coupon-item .content .no,
-.warp .coupon-item .content .datetime{color:#888;font-size:26rpx}

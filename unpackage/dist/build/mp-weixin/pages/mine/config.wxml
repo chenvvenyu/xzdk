@@ -1,1 +1,0 @@
-<view class="page"><view class="uni-list"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><uni-list-item vue-id="{{'c4cb53de-1-'+index}}" thumb="{{item.img}}" title="{{item.text}}" data-event-opts="{{[['^tap',[['goAction',[index]]]]]}}" bind:tap="__e" bind:__l="__l"></uni-list-item></block></view></view>

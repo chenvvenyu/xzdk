@@ -1,1 +1,0 @@
-<view class="warp data-v-571a663f"><block wx:for="{{logList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="log-item data-v-571a663f"><view class="title data-v-571a663f">{{item.Context}}</view><view class="time data-v-571a663f">{{item.CreateTime}}</view></view></block></view>
