@@ -1,6 +1,6 @@
 <template>
 	<view class="container-warp">
-		<view class="top-left" @tap="btnMime">
+		<view class="top-left" @tap="btnMime" :style="{top:menuInfo.top +'px !important'}">
 			<image :src="HeadUrlDeal(userInfo.HeadUrl)" ></image>
 		</view>
 		<view class="top-right"  @tap="btnOrder" hidden="true">
@@ -241,7 +241,7 @@
 			};
 		},
 		computed:{
-			...mapState(['hasLogin','userInfo'])
+			...mapState(['hasLogin','userInfo','menuInfo'])
 		},		
 		methods:{
 			HeadUrlDeal:function(headurl){

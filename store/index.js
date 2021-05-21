@@ -9,6 +9,7 @@ const store = new Vuex.Store({
 		userInfo: {},
 		unionId:'',
 		openId:'',
+		menuInfo:{}
 	},
 	mutations: {
 		//只能传一个参数，后面的参数无效，undefined
@@ -24,6 +25,9 @@ const store = new Vuex.Store({
 			state.unionId=data.unionId;
 			state.openId=data.openId;
 		},
+		setMenuInfo(state,data){
+			state.menuInfo = data
+		}
 	}
 })
 
