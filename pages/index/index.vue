@@ -1,25 +1,25 @@
 <template>
 	<view class="container-warp">
 		<view class="top-left" @tap="btnMime" :style="{top:menuInfo.top +'px !important'}">
-			<image :src="HeadUrlDeal(userInfo.HeadUrl)" ></image>
+			<image :src="HeadUrlDeal(userInfo.HeadUrl)"></image>
 		</view>
-		<view class="top-right"  @tap="btnOrder" hidden="true">
+		<view class="top-right" @tap="btnOrder" hidden="true">
 			<image src="/static/images/dt_false_zc_03.png"></image>
 		</view>
-		
+
 		<swiper class="banner-index" autoplay="1" interval="3000" duration="2000">
 			<swiper-item v-for="(item,index) in banerImg" :key="index">
 				<image class="img" :src="item.Url" mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
-		
+
 		<view class="content-block-size">
 			<view class="cont_block">
 				<view class="con-address">
 					<view class="address-item">
 						<view class="uni-flex uni-row">
 							<view class="tag">寄</view>
-							<view class="content" >
+							<view class="content">
 								<view class="address-sou" @tap="btnAddress1('mailing',0)">
 									<view class="title">{{PostData.mailingAddress}}</view>
 									<view class="title">{{PostData.mailingAddress2}}</view>
@@ -29,7 +29,7 @@
 							</view>
 							<view class="btn">
 								<view class="box" text="常用地址" @tap="btnAddress('mailing',0)">
-									常用<br/>
+									常用<br />
 									地址
 									<!--<uni-icons type="location" size="30"></uni-icons>-->
 								</view>
@@ -39,7 +39,7 @@
 					<view class="address-item">
 						<view class="uni-flex uni-row">
 							<view class="tag" style="background-color: rgb(223,57,67);">收</view>
-							<view class="content" >
+							<view class="content">
 								<view class="address-sou" @tap="btnAddress1('receipt',0)">
 									<view class="title">{{PostData.receiptAddress}}</view>
 									<view class="title">{{PostData.receiptAddress2}}</view>
@@ -48,7 +48,7 @@
 							</view>
 							<view class="btn">
 								<view class="box" text="常用地址" @tap="btnAddress('receipt',1)">
-									常用<br/>
+									常用<br />
 									地址
 									<!--<uni-icons type="location" size="30"></uni-icons>-->
 								</view>
@@ -60,21 +60,25 @@
 		</view>
 		<view v-if="!IsShowOutlet" class="content-block-size">
 			<view class="cont_block">
-				<view class="jj_title" >选择寄件方式</view>
+				<view class="jj_title">选择寄件方式</view>
 				<view class="jj-type">
 					<view @tap="TypeClick(true)" class="type-item" :class="{'type-active':PostData.expedited}">
 						<view class="title">当日达</view>
 						<view class="image">
 							<image mode="widthFix" src="../../static/images/dt_fast_03.png"></image>
 						</view>
-						<view class="tag" :style="{'background-color':PostData.expedited? '#3399FE':'#f7f7f7','color':PostData.expedited? '#ffffff':'#222222'}">省时</view>
+						<view class="tag"
+							:style="{'background-color':PostData.expedited? '#3399FE':'#f7f7f7','color':PostData.expedited? '#ffffff':'#222222'}">
+							省时</view>
 					</view>
 					<view @tap="TypeClick(false)" class="type-item" :class="{'type-active':!PostData.expedited}">
 						<view class="title">次日达</view>
 						<view class="image">
 							<image mode="widthFix" src="../../static/images/dt_people_03.png"></image>
 						</view>
-						<view class="tag" :style="{'background-color':!PostData.expedited? '#3399FE':'#f7f7f7','color':!PostData.expedited? '#ffffff':'#222222'}">省钱</view>
+						<view class="tag"
+							:style="{'background-color':!PostData.expedited? '#3399FE':'#f7f7f7','color':!PostData.expedited? '#ffffff':'#222222'}">
+							省钱</view>
 					</view>
 				</view>
 			</view>
@@ -82,16 +86,18 @@
 		<view v-if="!IsShowOutlet" class="agreement-box">
 			<label class="radio" style="margin-right: 30rpx;" @tap="agreementChange">
 				<radio value="r1" color="#3399FE" :checked="Agreement" />
-				我已阅读并同意<text @click.stop="GoWebview('userAgreement')">《服务协议》</text>和<text @click.stop="GoWebview('pivacyPolicy')">《隐私政策》</text>
+				我已阅读并同意<text @click.stop="GoWebview('userAgreement')">《服务协议》</text>和<text
+					@click.stop="GoWebview('pivacyPolicy')">《隐私政策》</text>
 			</label>
 			<button @tap="btnSubmit" class="btnSubmit" type="primary">确定</button>
 		</view>
+
 		<view v-if="ShadeShow" class="shade" @tap="shadeClick">
 			<view class="shade-content" @tap.stop="">
 				<view class="title">物品信息</view>
 				<view class="goodsInfo-box">
-					<view class="goodsInfo-item fl" :class="{'goods-active':GoodsIndex==index}" v-for="(item,index) in GoodsList" :key="index"
-					 @tap="GoodsItemClick(index)">
+					<view class="goodsInfo-item fl" :class="{'goods-active':GoodsIndex==index}"
+						v-for="(item,index) in GoodsList" :key="index" @tap="GoodsItemClick(index)">
 						{{item}}
 					</view>
 					<view class="clr"></view>
@@ -113,37 +119,48 @@
 					</view>
 					<view>
 						<view class="fl">代收货款</view>
-						<view class="fr">
-							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(false)">
+						<view class="form_swithch">
+							<view class="text">无</view>
+							<switch :checked="moneyRadio" @change="MoneyRadioChange()" color="#3399FE" />
+							<view class="text" :class="{select:moneyRadio}">有</view>
+							<!-- <label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(false)">
 								<radio value="r1" color="#3399FE" :checked="!moneyRadio" />
 								无
 							</label>
 							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(true)">
 								<radio value="r1" color="#3399FE" :checked="moneyRadio" />
 								有
-							</label>
+							</label> -->
 						</view>
 						<view class="clr"></view>
 					</view>
 					<view class="money-1">
 						<view class="fl uni-text-gray">代收货款金额</view>
 						<view class="fr">
-							<input class="input-money" type="number" placeholder="货款金额" :style="{'background-color':moneyRadio?'#ffffff':'#aaa','border':'1upx solid #aaa'}"
-							 :disabled="!moneyRadio" v-model="PostData.goodsPrice" />
+							<input class="input-money" type="number" placeholder="货款金额"
+								:style="{'background-color':moneyRadio?'#ffffff':'#aaa','border':'1upx solid #aaa'}"
+								:disabled="!moneyRadio" v-model="PostData.goodsPrice" />
 						</view>
 						<view class="clr"></view>
 					</view>
 					<view class="money-1">
 						<view class="fl uni-text-gray" style="color: #000000;">物品件数</view>
-						<view class="fr">
-							<input class="input-money" type="number" min="0" placeholder="物品件数" style="border:1upx solid #aaa"  v-model="PostData.goodsCount"/>
+						<view class="fr position">
+							<!-- <picker-view mode="selector" value="1" :range="goodsCountList">
+								<view class="picker"></view>
+							</picker-view> -->
+							<input class="input-money" type="number" min="0" placeholder="物品件数"
+								style="border:1upx solid #aaa" v-model="PostData.goodsCount" />
+							<view class="unit">件</view>
 						</view>
 						<view class="clr"></view>
 					</view>
 					<view class="money-1">
 						<view class="fl uni-text-gray" style="color: #000000;">物品重量</view>
-						<view class="fr">
-							<input class="input-money" type="number" min="3" maxlength="300" max="300" placeholder="物品重量" style="border:1upx solid #aaa"  v-model="PostData.weight"/>
+						<view class="fr position">
+							<input class="input-money" type="number" min="3" maxlength="300" max="300"
+								placeholder="物品重量" style="border:1upx solid #aaa" v-model="PostData.weight" />
+							<view class="unit">kg</view>
 						</view>
 						<view class="clr"></view>
 					</view>
@@ -161,7 +178,7 @@
 
 <script>
 	import VerifyHelper from "@/common/verify.js"
-	var bmap = require('../../common/bmap-wx.js'); 
+	var bmap = require('../../common/bmap-wx.js');
 	import {
 		mapState
 	} from 'vuex';
@@ -171,10 +188,12 @@
 	var _timeInterval;
 	var IntervalTimes = 0;
 	export default {
-		components: {uniIcons},
+		components: {
+			uniIcons
+		},
 		data() {
 			return {
-				locationAddr:{},
+				locationAddr: {},
 				timeArray: ['8:00~9:00', '8:00~9:00', '8:00~9:00', '8:00~9:00'],
 				timeIndex: 0,
 				ShadeShow: false,
@@ -182,30 +201,30 @@
 				OutletList: [],
 				Agreement: false,
 				moneyRadio: false,
-				locationPoint:{
-					latitude:0,
-					longitude:0
+				locationPoint: {
+					latitude: 0,
+					longitude: 0
 				},
 				PostData: {
-					"mailingLng": "",//寄件地址经度
-					"mailingLat": "",//寄件地址纬度
+					"mailingLng": "", //寄件地址经度
+					"mailingLat": "", //寄件地址纬度
 					"mailingRegionID": 0, //寄件区域ID
 					"mailingRegion": "", //寄件区域名称
-					"mailingProvince": "",//寄件省
-					"mailingCity": "",//寄件市
-					"mailingDistrict": "",//寄件县/区
-						"mailingAddress": "从哪儿寄出?", //寄件定位名称
+					"mailingProvince": "", //寄件省
+					"mailingCity": "", //寄件市
+					"mailingDistrict": "", //寄件县/区
+					"mailingAddress": "从哪儿寄出?", //寄件定位名称
 					"mailingAddress2": '', //寄件地址
 					"mailingAddress3": '', //定位地址
 					"mailingPersonName": "点击填写寄件人信息", //寄件人
 					"mailingPhone": "", //寄件人电话
-					"receiptLng": "",//收件地址经度
-					"receiptLat": "",//收件地址纬度
+					"receiptLng": "", //收件地址经度
+					"receiptLat": "", //收件地址纬度
 					"receiptRegionID": 0, //收件区域ID
 					"receiptRegion": '', //收件区域名称
-					"receiptProvince": '',//收件省
-					"receiptCity": "",//收件市
-					"receiptDistrict": "",//收件县/区
+					"receiptProvince": '', //收件省
+					"receiptCity": "", //收件市
+					"receiptDistrict": "", //收件县/区
 					"receiptAddress": "要寄到哪儿?", //收件定位名称
 					"receiptAddress2": "", //收件地址
 					"receiptAddress3": "", //定位地址
@@ -213,7 +232,7 @@
 					"receiptPhone": "", //收件人电话
 					"remark": "", //备注
 					"isProcuration": false, //是否代收货款
-					"weight": 1, //总重量kg
+					"weight": NaN, //总重量kg
 					"startWeight": 0, //起步重量
 					"startPrice": 0, //起步价
 					"exceedWeight": 0, //续重（kg）
@@ -225,91 +244,122 @@
 					"fareArrivePay": false, //运费是否到付
 					"expedited": true, //是否加急
 					"valet": false, //是否代客
-					"goodsInfo": "货物" ,//货品信息
-					"goodsCount":1 ,//货品件数
-					"haulDistance": 0//运送距离（千米）
+					"goodsInfo": "货物", //货品信息
+					"goodsCount": NaN, //货品件数
+					"haulDistance": 0 //运送距离（千米）
 				},
 				GoodsList: ['货物', '文件', '样品', '生鲜', '服装', '首饰', '数码', '其它'],
 				GoodsIndex: 0,
-				banerImg:[],
-				polygons:[],
-				AddressDesc:'',
-				AddressTitle:'',
-				reAddressDesc:'',
-				reAddressTitle:'',
-				regionList:[]
+				banerImg: [],
+				polygons: [],
+				AddressDesc: '',
+				AddressTitle: '',
+				reAddressDesc: '',
+				reAddressTitle: '',
+				regionList: [],
+				goodsCountList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+					26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+					51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
+					76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+					100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119,
+					120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139,
+					140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159,
+					160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179,
+					180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199,
+					200
+				],
+				weightList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+					27, 28, 29, 30, 31, 32, 33, 34, 35,
+					36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+					61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+					71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95,
+					96, 97, 98, 99, 100, 101, 102, 103, 104,
+					105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124,
+					125, 126, 127, 128, 129, 130, 131, 132, 133,
+					134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153,
+					154, 155, 156, 157, 158, 159, 160, 161, 162,
+					163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182,
+					183, 184, 185, 186, 187, 188, 189, 190, 191, 192,
+					193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212,
+					213, 214, 215, 216, 217, 218, 219, 220, 221, 222,
+					223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242,
+					243, 244, 245, 246, 247, 248, 249, 250, 251, 252,
+					253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272,
+					273, 274, 275, 276, 277, 278, 279, 280, 281, 282,
+					283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300
+				]
+
 			};
 		},
-		computed:{
-			...mapState(['hasLogin','userInfo','menuInfo'])
-		},		
-		methods:{
-			HeadUrlDeal:function(headurl){
-				if(VerifyHelper.IsNull(headurl)) return '/static/images/dt_false_dl.png';
+		computed: {
+			...mapState(['hasLogin', 'userInfo', 'menuInfo'])
+		},
+		methods: {
+			HeadUrlDeal: function(headurl) {
+				if (VerifyHelper.IsNull(headurl)) return '/static/images/dt_false_dl.png';
 				return headurl;
 			},
 			//默认寄件信息
-			GetDefaultContact(){
-				BMap = new bmap.BMapWX(); 
+			GetDefaultContact() {
+				BMap = new bmap.BMapWX();
 				uni.getLocation({
-					type:'gcj02', 
+					type: 'gcj02',
 					success(res) {
-						
+
 						//console.log(res);
-						
+
 						// 发起regeocoding检索请求
-						BMap.regeocoding({ 
-							location:res.latitude+','+res.longitude,
-						    success: function(data) { 
-								
+						BMap.regeocoding({
+							location: res.latitude + ',' + res.longitude,
+							success: function(data) {
+
 								//console.log(data.originalData.result);
 								let _obj = data.originalData.result.pois[0];
-								
+
 								//console.log(_obj);
-								if(_obj){
-									 
-									 let _address = _obj.name
-									 let _address2 = ""
-									 let _address3 = _obj.addr
-									 
-									 //_desc = _desc.replace("浙江省金华市婺城区","").replace("浙江省金华市义乌市","").replace("浙江省金华市义乌","")
-									 //_desc = _desc.replace("金华市婺城区","").replace("金华市义乌市","")					  
-																		  
-									 _self.PostData.mailingLng = _obj.point.x
-									 _self.PostData.mailingLat = _obj.point.y
-									 _self.PostData.mailingAddress = _address
-									 _self.PostData.mailingAddress2 = _address2
-									 _self.PostData.mailingAddress3 = _address3
-									 //_self.PostData.mailingPersonName = _self.userInfo.FullName
-									 //_self.PostData.mailingPhone = _self.userInfo.Mobile
+								if (_obj) {
+
+									let _address = _obj.name
+									let _address2 = ""
+									let _address3 = _obj.addr
+
+									//_desc = _desc.replace("浙江省金华市婺城区","").replace("浙江省金华市义乌市","").replace("浙江省金华市义乌","")
+									//_desc = _desc.replace("金华市婺城区","").replace("金华市义乌市","")					  
+
+									_self.PostData.mailingLng = _obj.point.x
+									_self.PostData.mailingLat = _obj.point.y
+									_self.PostData.mailingAddress = _address
+									_self.PostData.mailingAddress2 = _address2
+									_self.PostData.mailingAddress3 = _address3
+									//_self.PostData.mailingPersonName = _self.userInfo.FullName
+									//_self.PostData.mailingPhone = _self.userInfo.Mobile
 								}
 							}
-						}); 
+						});
 					}
 				})
-				
+
 				let _self = this
-				
-				_timeInterval = setInterval(function(){
-					
+
+				_timeInterval = setInterval(function() {
+
 					//console.log(_timeInterval);
-					if(IntervalTimes>=20) {
+					if (IntervalTimes >= 20) {
 						clearInterval(_timeInterval)
-					}
-					else{
-						if(_self.userInfo.accessToken){
-							
-							_self.PostData.mailingPersonName = _self.userInfo.FullName != '' ? _self.userInfo.FullName : "" 
-							_self.PostData.mailingPhone = _self.userInfo.Mobile 
-							
+					} else {
+						if (_self.userInfo.accessToken) {
+
+							_self.PostData.mailingPersonName = _self.userInfo.FullName != '' ? _self.userInfo
+								.FullName : ""
+							_self.PostData.mailingPhone = _self.userInfo.Mobile
+
 							clearInterval(_timeInterval)
-						}
-						else IntervalTimes++
+						} else IntervalTimes++
 					}
-					
-				},200)
-				
-				
+
+				}, 200)
+
+
 				/*
 				_timeInterval = setInterval(function(){
 					if(IntervalTimes>=10) {
@@ -468,26 +518,26 @@
 				
 				*/
 			},
-			
+
 			//付款方式(到付，寄付)
-			FareArrivePayChange(value){
+			FareArrivePayChange(value) {
 				let _self = this;
 				_self.PostData.fareArrivePay = value
 			},
-			
-			GoWebview(type){
-				if(VerifyHelper.IsNull(type)) return
+
+			GoWebview(type) {
+				if (VerifyHelper.IsNull(type)) return
 				uni.navigateTo({
-					url:'webView?type='+type
+					url: 'webView?type=' + type
 				})
 			},
-			
+
 			//提交下一步
-			btnSubmit:function(){
+			btnSubmit: function() {
 				let _self = this;
 				//_self.showMsg('2021.1.29-2.21，\n春节期间，暂停收派！');
 				//return;
-				
+
 				if (!_self.hasLogin) {
 					uni.showModal({
 						title: '登录提示',
@@ -509,19 +559,21 @@
 					_self.showMsg('请阅读并同意《服务协议》和《隐私政策》！');
 					return;
 				}
-				
-				if(!VerifyHelper.IsDouble(_self.PostData.mailingLng) || !VerifyHelper.IsDouble(_self.PostData.mailingLat)){
+
+				if (!VerifyHelper.IsDouble(_self.PostData.mailingLng) || !VerifyHelper.IsDouble(_self.PostData
+						.mailingLat)) {
 					_self.showMsg('请选择寄件定位或填写地址！');
 					return;
 				}
-				
-				if(!VerifyHelper.IsDouble(_self.PostData.receiptLng) || !VerifyHelper.IsDouble(_self.PostData.receiptLat)){
+
+				if (!VerifyHelper.IsDouble(_self.PostData.receiptLng) || !VerifyHelper.IsDouble(_self.PostData
+						.receiptLat)) {
 					_self.showMsg('请选择收件定位或填写地址！');
 					return;
 				}
-				
-				
-				
+
+
+
 				/*
 				if (Number(_self.PostData.mailingRegionID < 1)) {
 					_self.showMsg('寄件区域未开通');
@@ -533,7 +585,7 @@
 					return;
 				}
 				*/
-				
+
 				if (VerifyHelper.IsNull(_self.PostData.mailingPersonName)) {
 					_self.showMsg('请填写寄件人姓名！');
 					return;
@@ -542,7 +594,7 @@
 					_self.showMsg('请填写寄件人电话！');
 					return;
 				}
-				
+
 				/*				
 				if (!VerifyHelper.IsInt(_self.PostData.receiptRegionID) || VerifyHelper.IsNull(_self.PostData.receiptRegion) ||
 					Number(_self.PostData.receiptRegionID < 1)) {
@@ -550,7 +602,7 @@
 					return;
 				}
 				*/
-			   
+
 				if (VerifyHelper.IsNull(_self.PostData.receiptPersonName)) {
 					_self.showMsg('请填写收件人姓名！');
 					return;
@@ -559,65 +611,65 @@
 					_self.showMsg('请填写收件人电话！');
 					return;
 				}
-				
+
 				//判断寄件区域
-				_self.Get('/api/Region/GetRegionByCoordinate?lng='+_self.PostData.mailingLng+'&lat='+_self.PostData.mailingLat,'',_self.userInfo.accessToken,function(res){
-					console.log(res);
-					if(res.Status){
-						_self.PostData.mailingRegionID = res.Data.ID
-						_self.PostData.mailingRegion = res.Data.Name
-						_self.PostData.mailingProvince = res.Data.Province
-						_self.PostData.mailingCity = res.Data.City
-						_self.PostData.mailingDistrict = res.Data.District
-						
-						
-						//判断收件区域
-						_self.Get('/api/Region/GetRegionByCoordinate?lng='+_self.PostData.receiptLng+'&lat='+_self.PostData.receiptLat,'',_self.userInfo.accessToken,function(res){
-							console.log(res);
-							if(res.Status){
-								_self.PostData.receiptRegionID = res.Data.ID
-								_self.PostData.receiptRegion = res.Data.Name
-								_self.PostData.receiptProvince = res.Data.Province
-								_self.PostData.receiptCity = res.Data.City
-								_self.PostData.receiptDistrict = res.Data.District
-								
-								// 进行下一步
-								_self.ShadeShow = true;
-							}
-							else
-							{
-								_self.PostData.receiptRegionID = 0
-								_self.PostData.receiptRegion = ""
-								_self.showMsg('收件区域未开通！');
-								return;
-								
-							}
-						})
-					}
-					else
-					{
-						_self.PostData.mailingRegionID = 0
-						_self.PostData.mailingRegion = ""
-						
-						_self.showMsg('寄件区域未开通！');
-						
-					}
-				},'biz','application/json',true)
-				
-				
+				_self.Get('/api/Region/GetRegionByCoordinate?lng=' + _self.PostData.mailingLng + '&lat=' + _self
+					.PostData.mailingLat, '', _self.userInfo.accessToken,
+					function(res) {
+						console.log(res);
+						if (res.Status) {
+							_self.PostData.mailingRegionID = res.Data.ID
+							_self.PostData.mailingRegion = res.Data.Name
+							_self.PostData.mailingProvince = res.Data.Province
+							_self.PostData.mailingCity = res.Data.City
+							_self.PostData.mailingDistrict = res.Data.District
+
+
+							//判断收件区域
+							_self.Get('/api/Region/GetRegionByCoordinate?lng=' + _self.PostData.receiptLng +
+								'&lat=' + _self.PostData.receiptLat, '', _self.userInfo.accessToken,
+								function(res) {
+									console.log(res);
+									if (res.Status) {
+										_self.PostData.receiptRegionID = res.Data.ID
+										_self.PostData.receiptRegion = res.Data.Name
+										_self.PostData.receiptProvince = res.Data.Province
+										_self.PostData.receiptCity = res.Data.City
+										_self.PostData.receiptDistrict = res.Data.District
+
+										// 进行下一步
+										_self.ShadeShow = true;
+									} else {
+										_self.PostData.receiptRegionID = 0
+										_self.PostData.receiptRegion = ""
+										_self.showMsg('收件区域未开通！');
+										return;
+
+									}
+								})
+						} else {
+							_self.PostData.mailingRegionID = 0
+							_self.PostData.mailingRegion = ""
+
+							_self.showMsg('寄件区域未开通！');
+
+						}
+					}, 'biz', 'application/json', true)
+
+
 				return;
-				
-				
+
+
 			},
-			
+
 			//选择重量
 			sliderChange(e) {
 				let _self = this;
 				_self.PostData.weight = e.detail.value;
 			},
-			
+
 			//订单列表
-			btnOrder(){
+			btnOrder() {
 				let _self = this;
 				if (!_self.hasLogin) {
 					uni.showModal({
@@ -641,7 +693,7 @@
 					})
 				}
 			},
-			
+
 			//用户中心
 			btnMime: function() {
 				let _self = this;
@@ -668,45 +720,47 @@
 					})
 				}
 			},
-			
+
 			//是否同意用户协议《服务条款》与《隐私条款》
-			agreementChange: function() {				
+			agreementChange: function() {
 				let _self = this;
 				_self.Agreement = !_self.Agreement;
 			},
-			
+
 			//代收货款
-			MoneyRadioChange: function(value) {
+			MoneyRadioChange: function() {
 				let _self = this;
-				_self.moneyRadio = value;
-				_self.PostData.isProcuration = value;
-				if(value == false){
+				_self.moneyRadio = !_self.moneyRadio;
+				_self.PostData.isProcuration = !_self.PostData.isProcuration;
+				if (value == false) {
 					_self.PostData.goodsPrice = 0;
 				}
 			},
-			
+
 			// 临时地址
-			btnAddress1(type,curr){
+			btnAddress1(type, curr) {
 				let _self = this
 				let _item = {};
 				_self.type = type
-				if(type=='receipt'){
+				if (type == 'receipt') {
 					_item = {
-						Lng:_self.PostData.receiptLng,
-						Lat:_self.PostData.receiptLat,
-						Province:_self.PostData.receiptProvince,
-						City:_self.PostData.receiptCity,
-						District:_self.PostData.receiptDistrict,
-						Address:_self.PostData.receiptAddress == '要寄到哪儿?' ? '' : _self.PostData.receiptAddress,
-						Address2:_self.PostData.receiptAddress2,
-						Address3:_self.PostData.receiptAddress3,
-						FullName:_self.PostData.receiptPersonName == '点击填写收件人信息' ? '':_self.PostData.receiptPersonName,
-						Phone:_self.PostData.receiptPhone,
-						RegionID:_self.PostData.receiptRegionID,
-						RegionName:_self.PostData.receiptRegion,
+						Lng: _self.PostData.receiptLng,
+						Lat: _self.PostData.receiptLat,
+						Province: _self.PostData.receiptProvince,
+						City: _self.PostData.receiptCity,
+						District: _self.PostData.receiptDistrict,
+						Address: _self.PostData.receiptAddress == '要寄到哪儿?' ? '' : _self.PostData.receiptAddress,
+						Address2: _self.PostData.receiptAddress2,
+						Address3: _self.PostData.receiptAddress3,
+						FullName: _self.PostData.receiptPersonName == '点击填写收件人信息' ? '' : _self.PostData
+							.receiptPersonName,
+						Phone: _self.PostData.receiptPhone,
+						RegionID: _self.PostData.receiptRegionID,
+						RegionName: _self.PostData.receiptRegion,
 					}
-					console.log('_item',_item)
-					if(!VerifyHelper.IsInt(_self.PostData.receiptRegionID) || Number(_self.PostData.receiptRegionID)<1){
+					console.log('_item', _item)
+					if (!VerifyHelper.IsInt(_self.PostData.receiptRegionID) || Number(_self.PostData.receiptRegionID) <
+						1) {
 						console.log('收件操作')
 						// uni.chooseLocation({
 						//     success: function (res) {
@@ -728,33 +782,34 @@
 						//     }
 						// });
 						uni.navigateTo({
-							url:'address?address='+encodeURIComponent(JSON.stringify(_item))+'&type='+type
+							url: 'address?address=' + encodeURIComponent(JSON.stringify(_item)) + '&type=' + type
 						})
 						return;
 					}
-				}
-				else{
+				} else {
 					console.log('mailing')
-					
+
 					console.log(_self);
 					console.log(_self.PostData);
 					_item = {
-						Lng:_self.PostData.mailingLng,
-						Lat:_self.PostData.mailingLat,
-						Province:_self.PostData.mailingProvince,
-						City:_self.PostData.mailingCity,
-						District:_self.PostData.mailingDistrict,
+						Lng: _self.PostData.mailingLng,
+						Lat: _self.PostData.mailingLat,
+						Province: _self.PostData.mailingProvince,
+						City: _self.PostData.mailingCity,
+						District: _self.PostData.mailingDistrict,
 						Address: _self.PostData.mailingAddress, //_self.AddressTitle,
-						Address2:_self.PostData.mailingAddress2 ? _self.PostData.mailingAddress2 : '',
-						Address3:_self.PostData.mailingAddress3 ? _self.PostData.mailingAddress3 : '',
-						FullName:_self.PostData.mailingPersonName=='点击填写寄件人信息'?'':_self.PostData.mailingPersonName,
-						Phone:_self.PostData.mailingPhone,
-						RegionID:_self.PostData.mailingRegionID,
-						RegionName:_self.PostData.mailingRegion,
+						Address2: _self.PostData.mailingAddress2 ? _self.PostData.mailingAddress2 : '',
+						Address3: _self.PostData.mailingAddress3 ? _self.PostData.mailingAddress3 : '',
+						FullName: _self.PostData.mailingPersonName == '点击填写寄件人信息' ? '' : _self.PostData
+							.mailingPersonName,
+						Phone: _self.PostData.mailingPhone,
+						RegionID: _self.PostData.mailingRegionID,
+						RegionName: _self.PostData.mailingRegion,
 					}
-					if(!VerifyHelper.IsInt(_self.PostData.mailingRegionID) || Number(_self.PostData.mailingRegionID)<1){
+					if (!VerifyHelper.IsInt(_self.PostData.mailingRegionID) || Number(_self.PostData.mailingRegionID) <
+						1) {
 						uni.navigateTo({
-							url:'address?address='+encodeURIComponent(JSON.stringify(_item))+'&type='+type
+							url: 'address?address=' + encodeURIComponent(JSON.stringify(_item)) + '&type=' + type
 						})
 						return;
 						// uni.chooseLocation({
@@ -780,12 +835,12 @@
 					}
 				}
 				uni.navigateTo({
-					url:'address?address='+encodeURIComponent(JSON.stringify(_item))+'&type='+type
+					url: 'address?address=' + encodeURIComponent(JSON.stringify(_item)) + '&type=' + type
 				})
 			},
-			
+
 			// 常用地址
-			btnAddress: function(type,curr) {
+			btnAddress: function(type, curr) {
 				let _self = this;
 				if (!_self.hasLogin) {
 					uni.showModal({
@@ -805,14 +860,14 @@
 					})
 				} else {
 					//if(curr == 1){
-						return uni.navigateTo({
-							//url: '/pages/index/newMapAddress?curr='+curr+'&type='+type,
-							url: '/pages/mine/addressList?curr='+curr+'&type='+type
-						})
+					return uni.navigateTo({
+						//url: '/pages/index/newMapAddress?curr='+curr+'&type='+type,
+						url: '/pages/mine/addressList?curr=' + curr + '&type=' + type
+					})
 					//}
 				}
 			},
-			
+
 			/*
 			CheckIsPtInPoly(callback){
 				let _self = this
@@ -915,15 +970,15 @@
 				
 			},
 			*/
-			
-			PageReload: function(data, type = 'mailing',title='',desc='') {
+
+			PageReload: function(data, type = 'mailing', title = '', desc = '') {
 				let _self = this;
 				if (data != null) {
 					if (type == 'receipt') {
 						_self.type = 'receipt';
-						
+
 						console.log(data);
-						
+
 						_self.reAddressTitle = data.Address;
 						_self.reAddressDesc = data.Address2;
 						_self.PostData.receiptLng = data.Lng;
@@ -938,9 +993,9 @@
 						_self.PostData.receiptPhone = data.Phone;
 						_self.PostData.receiptRegionID = data.RegionID;
 						_self.PostData.receiptRegion = data.Region;
-						
+
 						return;
-						
+
 						/*
 						
 						_self.currDistrict(function(){
@@ -971,12 +1026,12 @@
 						});
 						
 						*/
-						
+
 					} else {
 						_self.type = 'mailing';
-						
+
 						//console.log(data);
-						
+
 						_self.AddressTitle = data.Address;
 						_self.AddressDesc = data.Address2;
 						_self.PostData.mailingLng = data.Lng;
@@ -991,9 +1046,9 @@
 						_self.PostData.mailingPhone = data.Phone;
 						_self.PostData.mailingRegionID = data.RegionID;
 						_self.PostData.mailingRegion = data.Region;
-						
+
 						return;
-						
+
 						/*
 						_self.currDistrict(function(){
 							_self.locationAddr = {
@@ -1025,7 +1080,7 @@
 					}
 				}
 			},
-			
+
 			TypeClick: function(value) {
 				let _self = this;
 				_self.PostData.expedited = value;
@@ -1050,12 +1105,14 @@
 					_self.showMsg('请选择物品信息！');
 					return;
 				}
-				
-				if (!VerifyHelper.IsInt(_self.PostData.goodsCount) || Number(_self.PostData.goodsCount) < 1 || Number(_self.PostData.goodsCount) > 10) {
+
+				if (!VerifyHelper.IsInt(_self.PostData.goodsCount) || Number(_self.PostData.goodsCount) < 1 || Number(
+						_self.PostData.goodsCount) > 10) {
 					_self.showMsg('物品件数范围1-10！');
 					return;
 				}
-				if (!VerifyHelper.IsInt(_self.PostData.weight) || Number(_self.PostData.weight) < 1 || Number(_self.PostData.weight) > 300) {
+				if (!VerifyHelper.IsInt(_self.PostData.weight) || Number(_self.PostData.weight) < 1 || Number(_self
+						.PostData.weight) > 300) {
 					_self.showMsg('物品重量范围2-300！');
 					return;
 				}
@@ -1063,30 +1120,31 @@
 				// _self.PostData.mailingLng = Number(_self.PostData.mailingLng).toFixed(5)
 				// _self.PostData.receiptLat = Number(_self.PostData.receiptLat).toFixed(5)
 				// _self.PostData.receiptLng = Number(_self.PostData.receiptLng).toFixed(5)
-				_self.PostData.haulDistance = BMapLib.GetDistance(_self.PostData.mailingLat,_self.PostData.mailingLng,_self.PostData.receiptLat,_self.PostData.receiptLng)
-				
+				_self.PostData.haulDistance = BMapLib.GetDistance(_self.PostData.mailingLat, _self.PostData.mailingLng,
+					_self.PostData.receiptLat, _self.PostData.receiptLng)
+
 				uni.navigateTo({
-					
+
 					url: '/pages/index/orderConfirm?data=' + encodeURIComponent(JSON.stringify(_self.PostData))
 				})
 			},
-			getData:function(){
+			getData: function() {
 				let t = this;
-				t.Get("/api/Home/GetBanners",{},'',function(res){
-					if(res.Status){
+				t.Get("/api/Home/GetBanners", {}, '', function(res) {
+					if (res.Status) {
 						t.banerImg = res.Data;
 					}
-				},'applets');
+				}, 'applets');
 			}
 		},
 		onLoad: function(option) {
 			uni.showShareMenu({
-				menus:['shareAppMessage', 'shareTimeline']
+				menus: ['shareAppMessage', 'shareTimeline']
 			})
 			let _self = this
 			let _goto = option.goto;
-			let leader = option.mobile?option.mobile:0
-			uni.setStorageSync('leader',leader)
+			let leader = option.mobile ? option.mobile : 0
+			uni.setStorageSync('leader', leader)
 			if (!VerifyHelper.IsNull(_goto)) {
 				uni.navigateTo({
 					url: _goto
@@ -1098,23 +1156,23 @@
 		onShareAppMessage(res) {
 			let _self = this;
 			let Mobile = uni.getStorageSync('login').Mobile
-			if(!VerifyHelper.IsNull(Mobile)){
-				console.log('path','/pages/index/index?mobile='+Mobile)
+			if (!VerifyHelper.IsNull(Mobile)) {
+				console.log('path', '/pages/index/index?mobile=' + Mobile)
 				return {
-				  title: '享指优选,配送到家',
-				  path: '/pages/index/index?mobile='+Mobile
+					title: '享指优选,配送到家',
+					path: '/pages/index/index?mobile=' + Mobile
 				}
-			}else{
+			} else {
 				return {
-				  title: '享指优选,配送到家',
-				  path: '/pages/index/index'
+					title: '享指优选,配送到家',
+					path: '/pages/index/index'
 				}
 			}
-		    
-		  },
-		onShareTimeline(res){
-			
-		}, 
+
+		},
+		onShareTimeline(res) {
+
+		},
 		bindPickerChange: function(e) {
 			this.timeIndex = e.target.value
 		},
@@ -1134,18 +1192,26 @@
 		width: 750upx;
 	}
 
-	.top-left,.top-right {
+	.top-left,
+	.top-right {
 		position: absolute;
 		z-index: 999;
 		top: 56upx;
 	}
-	.top-left{left: 50upx;}
-	.top-right {right: 50upx;}
+
+	.top-left {
+		left: 50upx;
+	}
+
+	.top-right {
+		right: 50upx;
+	}
+
 	.top-left image,
 	.top-right image {
 		width: 90upx;
 		height: 90upx;
-		background-repeat:unset;
+		background-repeat: unset;
 		border-radius: 45upx;
 	}
 
@@ -1194,16 +1260,23 @@
 		width: 25px;
 		height: 100px;
 	}
-	.address-item:last-child{margin-bottom: 0;}
-	.address-item{
-				margin-bottom: 30upx;padding: 30upx;border-radius: 30upx;border: 1px solid #f0f0f0;
-				
-		.tag{
+
+	.address-item:last-child {
+		margin-bottom: 0;
+	}
+
+	.address-item {
+		margin-bottom: 30upx;
+		padding: 30upx;
+		border-radius: 30upx;
+		border: 1px solid #f0f0f0;
+
+		.tag {
 			font-size: 28upx;
 			font-weight: bold;
 			margin-right: 30upx;
 			width: 46rpx;
-			height:46rpx;
+			height: 46rpx;
 			line-height: 46rpx;
 			box-sizing: border-box;
 			background-color: #3399FE;
@@ -1213,28 +1286,31 @@
 			border-radius: 10rpx;
 			margin-top: 8rpx;
 		}
-		.content 
-		{
-			width: 70%;box-sizing: border-box;
+
+		.content {
+			width: 70%;
+			box-sizing: border-box;
 			padding-right: 5%;
 			border-right: 1px solid #f0f0f0;
-			
+
 			.title {
 				font-size: 14px;
 				font-weight: bold;
 			}
+
 			.text {
 				font-size: 13px;
 				color: #888888;
 			}
 		}
+
 		.btn {
-			 display: flex;
-			 justify-content: space-between;
-			 align-items:center;
-			 flex-direction: row; 
-			 
-			.box{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+
+			.box {
 				padding-left: 30upx;
 				width: 100%;
 				font-size: 12px;
@@ -1242,6 +1318,7 @@
 			}
 		}
 	}
+
 	.jj_title {
 		font-size: 16px;
 		color: #888888;
@@ -1252,6 +1329,7 @@
 		align-items: center;
 		justify-content: center;
 		margin: 30upx 0;
+
 		.type-item {
 			height: 220upx;
 			width: 240upx;
@@ -1262,6 +1340,7 @@
 			margin: 0 15upx;
 			text-align: center;
 			position: relative;
+
 			.tag {
 				font-size: 26upx;
 				position: absolute;
@@ -1291,6 +1370,7 @@
 
 			.image {
 				height: 160upx;
+
 				image {
 					margin-top: 10upx;
 					width: 144upx;
@@ -1307,7 +1387,7 @@
 	.agreement-box {
 		margin: 10upx 30upx 0;
 		width: 690upx;
-		
+
 		text {
 			color: #007AFF;
 			font-size: 26upx;
@@ -1381,6 +1461,7 @@
 
 			.goodsInfo-box {
 				margin: 15upx;
+
 				.goodsInfo-item {
 					width: 150upx;
 					height: 150upx;
@@ -1399,15 +1480,22 @@
 					background-color: #EBF5FF;
 				}
 			}
-			
-			.pay-type-item{
-				height: 52upx;line-height: 52upx;padding: 0 30upx;border-radius: 26upx;
-				color: #808080;border: 1px solid #C0C0C0;margin-right: 30upx;
-			} 
-			.pay-type-select{
-				color: #3399FE;border-color: #EBF5FF;
+
+			.pay-type-item {
+				height: 52upx;
+				line-height: 52upx;
+				padding: 0 30upx;
+				border-radius: 26upx;
+				color: #808080;
+				border: 1px solid #C0C0C0;
+				margin-right: 30upx;
 			}
-			
+
+			.pay-type-select {
+				color: #3399FE;
+				border-color: #EBF5FF;
+			}
+
 			.money-box {
 				margin: 30upx;
 				width: 650upx;
@@ -1443,12 +1531,44 @@
 			}
 		}
 	}
-	.banner-index{
-		width:750rpx;
-		height:570rpx;
-		.img{
+
+	.banner-index {
+		width: 750rpx;
+		height: 570rpx;
+
+		.img {
 			width: 100%;
-			height:100%;
+			height: 100%;
+		}
+	}
+
+	.form_swithch {
+		float: right;
+		width: 42%;
+		display: flex;
+		justify-content: center;
+
+		switch {
+			transform: scale(0.7, 0.7)
+		}
+
+		.text {
+			margin: 0 10rpx;
+			color: #BEBEBE;
+		}
+
+		.select {
+			color: #3399FE;
+		}
+	}
+
+	.position {
+		position: relative;
+
+		.unit {
+			position: absolute;
+			right: 10rpx;
+			top: 0rpx;
 		}
 	}
 </style>
