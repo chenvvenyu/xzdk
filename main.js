@@ -187,8 +187,9 @@ Vue.prototype.Get=function(url,data,token,callback,type='biz',content='applicati
 }
 
 Vue.prototype.RefreshToken=function(accessToken,refreshToken,userInfo){
+	let test = true
 	uni.request({
-		url: 'https://auth.zjxztc.com/api/Auth/RefreshToken',
+		url: test?'http://192.168.8.104:8083/api/Auth/RefreshToken':'https://auth.zjxztc.com/api/Auth/RefreshToken',
 		method: 'POST',
 		header: {'content-type': 'application/json'},
 		data: data,
