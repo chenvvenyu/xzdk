@@ -301,7 +301,7 @@
 			currDistrict:function(callback){
 				console.log('currDistrict')
 				let _self = this;
-				_self.Get('/api/Region/GetRegionListByAddress?district='+'义乌市','',_self.userInfo.accessToken,function(res){
+				_self.Get('/api/Region/GetRegionListByAddress?district='+'宁波市','',_self.userInfo.accessToken,function(res){
 					if(res.Status){
 						if(res.Data && res.Data.length>0){
 							_self.regionList = res.Data

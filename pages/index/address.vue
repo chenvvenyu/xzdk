@@ -219,7 +219,7 @@
 				let _self = this;
 				
 				var BMap = new bmap.BMapWX();
-				var city = '浙江省义乌市';
+				var city = '浙江省宁波市';
 				// 发起geocoding检索请求 
 				BMap.geocoding({ 
 					address: city + addr,
@@ -382,7 +382,7 @@
 					console.log('arr',arr)
 					
 					for (var i = 0; i < arr.length; i++) {
-						if(arr[i] == '' || arr[i] == '浙江省' || arr[i] == '金华市' || arr[i] == '义乌市'){
+						if(arr[i] == '' || arr[i] == '浙江省' || arr[i] == '金华市' || arr[i] == '宁波市'){
 							arr.splice(i,1);
 							i--;
 						}
