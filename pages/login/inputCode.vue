@@ -37,7 +37,7 @@
 			...mapState(['unionId','userInfo','openId'])
 		},
 		methods:{
-			...mapMutations(['login']),
+			...mapMutations(['login','setUserType']),
 			MobileDeal:function(mobile){
 				if(!VerifyHelper.IsPhone(mobile)) return '';
 				return mobile.substring(0,3)+'****'+mobile.substring(7,11);
@@ -113,12 +113,14 @@
 												result2.Data.OpenID=_self.openId;
 												result2.Data.UnionID=_self.unionId;
 												_self.login(result2.Data);
+												this.setUserType(result2.Data.UserType)
 												uni.setStorageSync('accessToken',_self.UserInfo.accessToken);
 												uni.setStorageSync('refreshToken',_self.UserInfo.refreshToken);
 												uni.setStorageSync('fullname',result2.Data.FullName);
 												uni.setStorageSync('mobile',result2.Data.Mobile);
 												uni.setStorageSync('headurl',result2.Data.HeadUrl);
 												uni.setStorageSync('login',result2.Data);
+												uni.setStorageSync('UserId',result2.Data.ID)
 												_self.showMsg("绑定成功！");
 												uni.reLaunch({url:'/pages/index/index'});
 											}

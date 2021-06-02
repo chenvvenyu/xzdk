@@ -25,7 +25,7 @@
 		},
 		methods: {
 			// 映射两个状态到页面示例中，可以直接访问，实时获取Mutations的值
-			...mapMutations(['saveID','login']),
+			...mapMutations(['saveID','login','setUserType']),
 			//获取用户信息
 			GetUserInfo(e) {
 				let _self = this
@@ -76,12 +76,14 @@
 								result2.Data.refreshToken=result.Data.refreshToken;
 								result2.Data.OpenID=openId;
 								_self.login(result2.Data);
+								this.setUserType(result2.Data.UserType)
 								uni.setStorageSync('accessToken',result.Data.accessToken);
 								uni.setStorageSync('refreshToken',result.Data.refreshToken);
 								uni.setStorageSync('login',result2.Data);
 								uni.setStorageSync('fullname',result2.Data.FullName);
 								uni.setStorageSync('mobile',result2.Data.Mobile);
 								uni.setStorageSync('headurl',result2.Data.HeadUrl);
+								uni.setStorageSync('UserId',result2.Data.ID)
 								_self.showMsg("登录成功！");
 								uni.reLaunch({url:'/pages/index/index'});
 							}

@@ -19,7 +19,7 @@
 		},
 		methods:{
 			// 映射login状态到页面示例中，可以直接访问，实时获取Mutations的值
-			...mapMutations(['login','setMenuInfo']),
+			...mapMutations(['login','setMenuInfo','setUserType']),
 			//获取微信数据
 			GetUserInfo() {
 				let _self=this;
@@ -79,9 +79,11 @@
 								uni.setStorageSync('accessToken',result.Data.accessToken);
 								uni.setStorageSync('refreshToken',result.Data.refreshToken);
 								uni.setStorageSync('login',result2.Data);
+								_self.setUserType(result2.Data.UserType)
 								uni.setStorageSync('fullname',result2.Data.FullName);
 								uni.setStorageSync('mobile',result2.Data.Mobile);
 								uni.setStorageSync('headurl',result2.Data.HeadUrl);
+								uni.setStorageSync('UserId',result2.Data.ID)
 								_self.login(result2.Data);
 								//uni.reLaunch({url:'/pages/index/index'});
 							}

@@ -8,6 +8,7 @@ const store = new Vuex.Store({
 		hasLogin:false,
 		userInfo: {},
 		unionId:'',
+		userType:0,
 		openId:'',
 		menuInfo:{}
 	},
@@ -27,6 +28,9 @@ const store = new Vuex.Store({
 		},
 		setMenuInfo(state,data){
 			state.menuInfo = data
+		},
+		setUserType(state,data){
+			state.userType= data
 		}
 	}
 })

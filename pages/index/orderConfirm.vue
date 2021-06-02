@@ -29,7 +29,7 @@
 				<view class="cont-row">订单金额：{{OrderData.cost}} 元</view>
 				<view class="cont-row">物品分类：{{OrderData.goodsInfo}}</view>
 				<view class="cont-row">代收货款：{{OrderData.goodsPrice}} 元</view>
-				<view class="cont-row">优&nbsp;惠&nbsp;券：{{coupon.Amount+ ' '+coupon.Name}} | <label style="border: 1px solid #888888;padding: 0px 10px;border-radius: 10px;height: 30px;font-size: 14px;margin-left: 10px;" @click="btnUse">使用</label></view>
+				<view class="cont-row" v-if="userType===0">优&nbsp;惠&nbsp;券：{{coupon.Amount+ ' '+coupon.Name}} | <label style="border: 1px solid #888888;padding: 0px 10px;border-radius: 10px;height: 30px;font-size: 14px;margin-left: 10px;" @click="btnUse">使用</label></view>
 				<view class="cont-row">物品重量：{{OrderData.weight}} kg</view>
 				<view class="cont-row">物品件数：{{OrderData.goodsCount}} 件</view>
 			</view>
@@ -62,7 +62,7 @@
 			};
 		},
 		computed:{
-			...mapState(['hasLogin','userInfo'])
+			...mapState(['hasLogin','userInfo','userType'])
 		},		
 		methods:{
 			btnUse(){
@@ -110,7 +110,10 @@
 			LoadData:function(){
 				let _self = this;
 				let _url = '/api/Region/GetRegionConfig?startRegionID='+_self.OrderData.mailingRegionID+'&endRegionID='+_self.OrderData.receiptRegionID;
-				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
+				let _url2 = '/api/Region/GetMajorUserConfig/'+uni.getStorageSync('UserId')
+				
+				_self.Get(this.userType?_url2:_url,'',_self.userInfo.accessToken,function(res){
+					console.log(res)
 					if(res.Status && res.Data){
 						let _data = res.Data;
 						//次日达参数
