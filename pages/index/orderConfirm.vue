@@ -110,33 +110,46 @@
 			LoadData:function(){
 				let _self = this;
 				let _url = '/api/Region/GetRegionConfig?startRegionID='+_self.OrderData.mailingRegionID+'&endRegionID='+_self.OrderData.receiptRegionID;
-				let _url2 = '/api/Region/GetMajorUserConfig/'+uni.getStorageSync('UserId')
+				// let _url2 = '/api/Region/GetMajorUserConfig/'+uni.getStorageSync('UserId')
 				
-				_self.Get(this.userType?_url2:_url,'',_self.userInfo.accessToken,function(res){
-					console.log(res)
+				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
 					if(res.Status && res.Data){
-						let _data = res.Data;
+						let _data =_self.getCoefficient(res.Data)
+						let {
+							_startWeight,
+							_startPrice,
+							_exceedWeightPrice1,
+							_levelPriceDis,
+							_exceedWeightRange1,
+							_exceedWeightRange2,
+							_exceedWeightRange3,
+							_exceedWeightFixedPrice1,
+							_exceedWeightFixedPrice2,
+							_exceedWeightFixedPrice3
+						}=_data
+						// let _data = res.Data;
 						//次日达参数
 						let {NextdayWeightPrice,NextdayPrice}=res.Data
 						let _weight = _self.OrderData.weight;//物品重量
-						// if(_weight>=200) _weight=200;
-						let _startWeight = _data.Weight;//起始重量
-						let _startPrice = _data.Price;//起始价格
 						let _exceedWeight = _weight-_startWeight;//续重 = 物品重量 - 起始重量						
-						let _exceedWeightPrice1 = _data.ExceedWeightPrice1;//续重每千克多少钱
+						// if(_weight>=200) _weight=200;
+						// let _startWeight = _data.Weight;//起始重量
+						// let _startPrice = _data.Price;//起始价格
+
+						// let _exceedWeightPrice1 = _data.ExceedWeightPrice1;//续重每千克多少钱
 						
-						let _exceedWeightPrice2 = _data.ExceedWeightPrice2;//(废弃)
-						let _urgentPrice = _data.UrgentPrice //加急费用(废弃)
+						// let _exceedWeightPrice2 = _data.ExceedWeightPrice2;//(废弃)
+						// let _urgentPrice = _data.UrgentPrice //加急费用(废弃)
 						
-						let _urgentCoefficient = _data.UrgentCoefficient //加急系数
-						let _levelPriceDis = _data.PriceDis//会员折扣系数
+						// let _urgentCoefficient = _data.UrgentCoefficient //加急系数
+						// let _levelPriceDis = _data.PriceDis//会员折扣系数
 						
-						let _exceedWeightRange1 = _data.ExceedWeightRange1;//重量区间1
-						let _exceedWeightRange2 = _data.ExceedWeightRange2;//重量区间2 
-						let _exceedWeightRange3 = _data.ExceedWeightRange3;//重量区间3
-						let _exceedWeightFixedPrice1 = _data.ExceedWeightFixedPrice1;//价格区间1
-						let _exceedWeightFixedPrice2 = _data.ExceedWeightFixedPrice2;//价格区间2
-						let _exceedWeightFixedPrice3 = _data.ExceedWeightFixedPrice3;//价格区间3
+						// let _exceedWeightRange1 = _data.ExceedWeightRange1;//重量区间1
+						// let _exceedWeightRange2 = _data.ExceedWeightRange2;//重量区间2 
+						// let _exceedWeightRange3 = _data.ExceedWeightRange3;//重量区间3
+						// let _exceedWeightFixedPrice1 = _data.ExceedWeightFixedPrice1;//价格区间1
+						// let _exceedWeightFixedPrice2 = _data.ExceedWeightFixedPrice2;//价格区间2
+						// let _exceedWeightFixedPrice3 = _data.ExceedWeightFixedPrice3;//价格区间3
 						
 						let _exceedPrice = 0;//续费价格
 						if(_weight > _exceedWeightRange3){//超过重量区间3
@@ -162,7 +175,7 @@
 						_self.OrderData.exceedWeight= _exceedPrice == 0 ? 0 : _exceedWeight;
 						//_self.OrderData.expedited 0:今日达 1:次日达
 						// _self.totalMoney =_self.OrderData.expedited ?  _self.totalMoney*_urgentCoefficient*_levelPriceDis : _self.totalMoney*_levelPriceDis;
-						_self.totalMoney =!_self.OrderData.expedited ?  (NextdayPrice + (_weight-_startWeight>0?_weight-_startWeight:0)*NextdayWeightPrice)*_levelPriceDis :  _self.totalMoney*_levelPriceDis;
+						_self.totalMoney = _self.totalMoney*_levelPriceDis;
 						_self.totalMoney = _self.totalMoney.toFixed(2);
 						_self.OrderData.startWeight=_startWeight;
 						_self.OrderData.cost = _self.totalMoney;
@@ -221,6 +234,25 @@
 						} 
 					}
 				})
+			},
+			//计算相关系数
+			getCoefficient(data){
+				//this.OrderData.expedited 0:今日达 1:次日达
+				let {expedited} =this.OrderData
+				console.log(expedited?1:0)
+				let info={
+					_startWeight:expedited?data.Weight:data.NextdayFirstWeight,//起始重量
+					_startPrice:expedited?data.Price:data.NextdayPrice,//起步价格
+					_exceedWeightPrice1:expedited?data.ExceedWeightPrice1:data.NextdayWeightPrice,//续重价格
+					_levelPriceDis:data.PriceDis,//会员系数
+					_exceedWeightRange1:expedited?data.ExceedWeightRange1:data.NextdayWeightRange1,//重量区间1
+					_exceedWeightRange2:expedited?data.ExceedWeightRange2:data.NextdayWeightRange2,//重量区间2
+					_exceedWeightRange3:expedited?data.ExceedWeightRange3:data.NextdayWeightRange3,//重量区间3
+					_exceedWeightFixedPrice1:expedited?data.ExceedWeightFixedPrice1:data.NextdayWeightFixedPrice1,//价格区间1
+					_exceedWeightFixedPrice2:expedited?data.ExceedWeightFixedPrice2:data.NextdayWeightFixedPrice2,//价格区间1
+					_exceedWeightFixedPrice3:expedited?data.ExceedWeightFixedPrice3:data.NextdayWeightFixedPrice3,//价格区间3
+				}
+				return info
 			}
 		},
 		onLoad:function(option){

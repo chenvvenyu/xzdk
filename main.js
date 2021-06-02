@@ -43,7 +43,6 @@ Vue.prototype.POST=function(url,data,token,callback,type='biz',content='applicat
 		data: data,
 		async:false,//同步属性设置为true 
 		complete:(res)=> {
-			console.log(res)
 			uni.hideLoading();
 			if(res.statusCode==200)
 			{
