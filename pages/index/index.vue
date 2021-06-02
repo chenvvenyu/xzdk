@@ -226,7 +226,7 @@
 					"receiptPhone": "", //收件人电话
 					"remark": "", //备注
 					"isProcuration": false, //是否代收货款
-					"weight": NaN, //总重量kg
+					"weight": 1, //总重量kg
 					"startWeight": 0, //起步重量
 					"startPrice": 0, //起步价
 					"exceedWeight": 0, //续重（kg）
@@ -239,7 +239,7 @@
 					"expedited": true, //是否加急
 					"valet": false, //是否代客
 					"goodsInfo": "货物", //货品信息
-					"goodsCount": NaN, //货品件数
+					"goodsCount": 1, //货品件数
 					"haulDistance": 0 //运送距离（千米）
 				},
 				GoodsList: ['货物', '文件', '样品', '生鲜', '服装', '首饰', '数码', '其它'],

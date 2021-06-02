@@ -1,7 +1,7 @@
 <template>
 	<view class="container-warp">
 		<view class="title-box">
-			<view class="money">￥{{OrderInfo.order.Cost}}</view>
+			<view class="money">￥{{price}}</view>
 			<view class="des">支付金额</view>
 		</view>
 		<view class="paytype-box">
@@ -49,6 +49,7 @@
 				OrderInfo:{
 					
 				},
+				price:0,
 				PayTypeList:[
 					{logo:'/static/images/zf_weixin_06.png',name:'微信',type:'wechat'},
 					{logo:'/static/images/zf_yuer_07.png',name:'余额',type:'balance'},
@@ -99,6 +100,7 @@
 				_self.Get('/api/Order/GetOrder?id='+_self.OrderID,'',_self.userInfo.accessToken,function(res){
 					if(res.Status){
 						_self.OrderInfo = res.Data;
+						_self.price = _self.OrderInfo.coupon?_self.OrderInfo.order.Cost-_self.OrderInfo.coupon.Amount:_self.OrderInfo.order.Cost
 					}
 				},'biz')
 			},
@@ -127,6 +129,7 @@
 							orderId:_self.OrderID
 						}
 						_self.POST('/api/Pay/Wechat',_param,_self.userInfo.accessToken,function(result){
+							console.log(result)
 							if(result.Status){
 								let data=JSON.parse(result.Data);
 								uni.requestPayment({
@@ -192,7 +195,7 @@
 							"startPrice": _self.OrderInfo.order.StartPrice,
 							"exceedWeight": _self.OrderInfo.order.ExceedWeight,
 							"exceedPrice": _self.OrderInfo.order.ExceedPrice,
-							"cost": _self.OrderInfo.order.Cost,
+							"cost": _self.price,
 							"goodsPrice": _self.OrderInfo.order.GoodsPrice,
 							"couponID": _self.OrderInfo.order.CouponID,
 							"fareArrivePay": true,

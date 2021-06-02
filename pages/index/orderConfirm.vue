@@ -194,7 +194,7 @@
 					_self.coupon.Name = ''
 					return
 				}
-				_self.OrderData.cost = _self.totalMoney - _self.coupon.Amount
+				// _self.OrderData.cost = _self.totalMoney - _self.coupon.Amount
 				uni.showModal({
 					title:'提示',
 					content:'请再次确认订单信息！',

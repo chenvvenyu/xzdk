@@ -17,7 +17,7 @@
 		</view>
 		<view class="order-info">
 			<view class="text">订单编号：{{OrderInfo.order.OrderNO}}</view>
-			<view class="text">订单金额：{{OrderInfo.order.Cost}} 元</view>
+			<view class="text">订单金额：{{OrderInfo.coupon.Amount>0?OrderInfo.order.Cost-OrderInfo.coupon.Amount:OrderInfo.order.Cost}} 元</view>
 			<view class="text">寄送方式：{{OrderInfo.order.Expedited?'今日达':'次日达'}}</view>
 			<view class="text">物品分类：{{OrderInfo.order.GoodsInfo}}</view>
 			<view class="text">代收货款：{{OrderInfo.order.GoodsPrice}} 元</view>
@@ -58,6 +58,7 @@
 				_self.Get('/api/Order/GetOrder',_param,_self.userInfo.accessToken,function(res){
 					if(res.Status) {
 						_self.OrderInfo = res.Data
+						console.log(_self.OrderInfo)
 					}
 				},'biz')
 			},
