@@ -110,7 +110,7 @@
 			LoadData:function(){
 				let _self = this;
 				let _url = '/api/Region/GetRegionConfig?startRegionID='+_self.OrderData.mailingRegionID+'&endRegionID='+_self.OrderData.receiptRegionID;
-				// let _url2 = '/api/Region/GetMajorUserConfig/'+uni.getStorageSync('UserId')
+				let _url2 = '/api/Region/GetMajorUserConfig/'+uni.getStorageSync('UserId')
 				
 				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
 					if(res.Status && res.Data){
