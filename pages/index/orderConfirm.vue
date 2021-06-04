@@ -114,7 +114,6 @@
 				
 				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
 					if(res.Status && res.Data){
-						let _data =_self.getCoefficient(res.Data)
 						let {
 							_startWeight,
 							_startPrice,
@@ -126,10 +125,10 @@
 							_exceedWeightFixedPrice1,
 							_exceedWeightFixedPrice2,
 							_exceedWeightFixedPrice3
-						}=_data
+						}=_self.getCoefficient(res.Data)
 						// let _data = res.Data;
 						//次日达参数
-						let {NextdayWeightPrice,NextdayPrice}=res.Data
+						// let {NextdayWeightPrice,NextdayPrice}=res.Data
 						let _weight = _self.OrderData.weight;//物品重量
 						let _exceedWeight = _weight-_startWeight;//续重 = 物品重量 - 起始重量						
 						// if(_weight>=200) _weight=200;
@@ -175,7 +174,7 @@
 						_self.OrderData.exceedWeight= _exceedPrice == 0 ? 0 : _exceedWeight;
 						//_self.OrderData.expedited 0:今日达 1:次日达
 						// _self.totalMoney =_self.OrderData.expedited ?  _self.totalMoney*_urgentCoefficient*_levelPriceDis : _self.totalMoney*_levelPriceDis;
-						_self.totalMoney = _self.totalMoney*_levelPriceDis;
+						_self.totalMoney = _self.totalMoney;
 						_self.totalMoney = _self.totalMoney.toFixed(2);
 						_self.OrderData.startWeight=_startWeight;
 						_self.OrderData.cost = _self.totalMoney;
