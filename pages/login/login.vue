@@ -76,7 +76,7 @@
 								result2.Data.refreshToken=result.Data.refreshToken;
 								result2.Data.OpenID=openId;
 								_self.login(result2.Data);
-								this.setUserType(result2.Data.UserType)
+								_self.setUserType(result2.Data.UserType)
 								uni.setStorageSync('accessToken',result.Data.accessToken);
 								uni.setStorageSync('refreshToken',result.Data.refreshToken);
 								uni.setStorageSync('login',result2.Data);

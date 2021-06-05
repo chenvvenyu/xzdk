@@ -113,7 +113,7 @@
 												result2.Data.OpenID=_self.openId;
 												result2.Data.UnionID=_self.unionId;
 												_self.login(result2.Data);
-												this.setUserType(result2.Data.UserType)
+												_self.setUserType(result2.Data.UserType)
 												uni.setStorageSync('accessToken',_self.UserInfo.accessToken);
 												uni.setStorageSync('refreshToken',_self.UserInfo.refreshToken);
 												uni.setStorageSync('fullname',result2.Data.FullName);
