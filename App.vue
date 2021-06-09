@@ -90,6 +90,9 @@
 							//else uni.reLaunch({url:"/pages/login/login"});
 						},'biz');
 					}
+					else{
+						_self.getPage()
+					}
 					//else uni.reLaunch({url:"/pages/login/login"});
 				},'auth','application/x-www-form-urlencoded');
 			},
@@ -98,7 +101,7 @@
 				let MenuInfo = uni.getMenuButtonBoundingClientRect();
 				this.setMenuInfo(MenuInfo);
 			},
-				
+			//获取小程序版本
 			getAppState(){
 				 if (wx.canIUse("getUpdateManager")) {
 				            const updateManager = wx.getUpdateManager();
@@ -131,7 +134,17 @@
 				                content: '当前微信版本过低，无法使用更新小程序版本功能，请升级到最新微信版本后重试。'
 				            })
 				        }
-				
+			},
+			//获取页面栈
+			 getPage(){
+				const page = getCurrentPages()[0].route
+				if(page == 'pages/mine/mine'){
+					uni.setStorageSync('mine',1)
+					uni.reLaunch({
+					    url:'/pages/login/login',
+						
+					});
+				}
 			}
 		}
 

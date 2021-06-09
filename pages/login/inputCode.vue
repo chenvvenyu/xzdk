@@ -122,7 +122,8 @@
 												uni.setStorageSync('login',result2.Data);
 												uni.setStorageSync('UserId',result2.Data.ID)
 												_self.showMsg("绑定成功！");
-												uni.reLaunch({url:'/pages/index/index'});
+												const entry = uni.getStorageSync('mine')
+												uni.reLaunch({url:entry?'/pages/mine/mine':'/pages/index/index'});
 											}
 											else{
 												uni.showToast({
