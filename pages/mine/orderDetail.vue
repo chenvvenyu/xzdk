@@ -16,6 +16,7 @@
 			</view>
 		</view>
 		<view class="order-info">
+			<view class="text">运单号：{{OrderInfo.order.ID}}</view>
 			<view class="text">订单编号：{{OrderInfo.order.OrderNO}}</view>
 			<view class="text">订单金额：{{OrderInfo.coupon.Amount>0?OrderInfo.order.Cost-OrderInfo.coupon.Amount:OrderInfo.order.Cost}} 元</view>
 			<view class="text">寄送方式：{{OrderInfo.order.Expedited?'今日达':'次日达'}}</view>
@@ -23,6 +24,7 @@
 			<view class="text">代收货款：{{OrderInfo.order.GoodsPrice}} 元</view>
 			<view class="text">货物件数：{{OrderInfo.order.GoodsCount}} 件</view>
 			<view class="text">货物重量：{{OrderInfo.order.Weight}} 千克</view>
+			<view class="text">保价费：{{OrderInfo.order.ValuationAmount}} 元</view>
 			<view class="text">下单时间：{{OrderInfo.order.CreateTime}}</view>
 		</view>
 		<view class="btn-view">

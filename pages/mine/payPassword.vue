@@ -78,6 +78,9 @@
 							icon:'success',
 							title:'设置成功'
 						})
+						uni.reLaunch({
+							url:"/pages/index/index"
+						})
 					}
 					else _self.showMsg(res.Message);
 				},'biz')

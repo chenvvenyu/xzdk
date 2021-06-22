@@ -93,7 +93,7 @@
 		</view>
 
 		<view v-if="ShadeShow" class="shade" @tap="shadeClick">
-			<view class="shade-content" @tap.stop="">
+			<view class="<strong>shade-content</strong>" @tap.stop="">
 				<view class="title">物品信息</view>
 				<view class="goodsInfo-box">
 					<view class="goodsInfo-item fl" :class="{'goods-active':GoodsIndex==index}"
@@ -103,7 +103,7 @@
 					<view class="clr"></view>
 				</view>
 				<view class="money-box">
-					<view style="margin-bottom: 10px;">
+					<view>
 						<view class="fl">付款方式</view>
 						<view class="fr">
 							<label class="radio" style="margin-right: 30rpx;" @tap="FareArrivePayChange(true)">
@@ -117,15 +117,15 @@
 						</view>
 						<view class="clr"></view>
 					</view>
-					<view>
+					<view class="money-1">
 						<view class="fl">代收货款</view>
 						<view class="form_swithch">
-							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(false)">
-								<radio value="r1" color="#3399FE" :checked="!moneyRadio" />
+							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(false,'isProcuration')">
+								<radio value="r1" color="#3399FE" :checked="!isProcuration" />
 								无
 							</label>
-							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(true)">
-								<radio value="r1" color="#3399FE" :checked="moneyRadio" />
+							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(true,'isProcuration')">
+								<radio value="r1" color="#3399FE" :checked="isProcuration" />
 								有
 							</label>
 						</view>
@@ -135,8 +135,31 @@
 						<view class="fl uni-text-gray">代收货款金额</view>
 						<view class="fr">
 							<input class="input-money" type="number" placeholder="货款金额"
-								:style="{'background-color':moneyRadio?'#ffffff':'#aaa','border':'1upx solid #aaa'}"
-								:disabled="!moneyRadio" v-model="PostData.goodsPrice" />
+								:style="{'background-color':isProcuration?'#ffffff':'#aaa','border':'1upx solid #aaa'}"
+								:disabled="!isProcuration" v-model="PostData.goodsPrice" />
+						</view>
+						<view class="clr"></view>
+					</view>
+					<view class="money-1">
+						<view class="fl">保价</view>
+						<view class="form_swithch">
+							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(false,'isValuation')">
+								<radio value="r1" color="#3399FE" :checked="!isValuation" />
+								否
+							</label>
+							<label class="radio" style="margin-right: 30rpx;" @tap="MoneyRadioChange(true,'isValuation')">
+								<radio value="r1" color="#3399FE" :checked="isValuation" />
+								是
+							</label>
+						</view>
+						<view class="clr"></view>
+					</view>
+					<view class="money-1">
+						<view :class="isValuation?'fl':'fl uni-text-gray'">保价费</view>
+						<view class="fr">
+							<input class="input-money" type="number" placeholder="保价金额"
+								:style="{'background-color':isValuation?'#ffffff':'#aaa','border':'1upx solid #aaa'}"
+								:disabled="!isValuation" v-model="PostData.ValuationPrice" />
 						</view>
 						<view class="clr"></view>
 					</view>
@@ -194,7 +217,8 @@
 				IsShowOutlet: false,
 				OutletList: [],
 				Agreement: false,
-				moneyRadio: false,
+				isProcuration: false,
+				isValuation:false,
 				locationPoint: {
 					latitude: 0,
 					longitude: 0
@@ -240,7 +264,9 @@
 					"valet": false, //是否代客
 					"goodsInfo": "货物", //货品信息
 					"goodsCount": 1, //货品件数
-					"haulDistance": 0 //运送距离（千米）
+					"haulDistance": 0 ,//运送距离（千米）,
+					"ValuationPrice":0,//保价金额
+					"isValuation":false//是否保价
 				},
 				GoodsList: ['货物', '文件', '样品', '生鲜', '服装', '首饰', '数码', '其它'],
 				GoodsIndex: 0,
@@ -267,9 +293,7 @@
 				uni.getLocation({
 					type: 'gcj02',
 					success(res) {
-
 						//console.log(res);
-
 						// 发起regeocoding检索请求
 						BMap.regeocoding({
 							location: res.latitude + ',' + res.longitude,
@@ -690,12 +714,14 @@
 			},
 
 			//代收货款
-			MoneyRadioChange: function(value) {
+			MoneyRadioChange: function(value,type) {
 				let _self = this;
-				_self.moneyRadio = value;
-				_self.PostData.isProcuration = value;
+				_self[type] = value;
+				_self.PostData[type] = value;
 				if (value == false) {
-					_self.PostData.goodsPrice = 0;
+					type === 'isProcuration'?
+					_self.PostData.goodsPrice = 0:
+					_self.PostData.ValuationPrice = 0
 				}
 			},
 
@@ -1082,6 +1108,10 @@
 					_self.showMsg("请输入代收货款金额")
 					return
 				}
+				if((_self.PostData.ValuationPrice == 0||_self.PostData.ValuationPrice >5000) && _self.PostData.isValuation){
+					_self.showMsg("保价范围1-5000！")
+					return
+				}
 				// _self.PostData.mailingLat =Number(_self.PostData.mailingLat).toFixed(5)
 				// _self.PostData.mailingLng = Number(_self.PostData.mailingLng).toFixed(5)
 				// _self.PostData.receiptLat = Number(_self.PostData.receiptLat).toFixed(5)
@@ -1421,7 +1451,7 @@
 				font-size: 32upx;
 				font-weight: bold;
 				padding-left: 30upx;
-				margin: 30upx 0
+				margin: 30upx 0 0 0
 			}
 
 			.goodsInfo-box {
@@ -1429,7 +1459,7 @@
 
 				.goodsInfo-item {
 					width: 150upx;
-					height: 150upx;
+					height: 110upx;
 					margin: 15upx;
 					border: 1upx solid #F5F5F5;
 					box-sizing: border-box;

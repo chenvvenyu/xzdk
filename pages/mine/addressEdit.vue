@@ -219,7 +219,10 @@
 								_self.CheckIsPtInPoly();
 							});
 							*/
-					    }
+					    },
+						fail:res=>{
+							console.log(res)
+						}
 					});
 				}else{
 					uni.chooseLocation({

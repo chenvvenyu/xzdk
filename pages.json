@@ -200,6 +200,14 @@
                 "navigationBarTitleText": "编辑个人信息",
                 "enablePullDownRefresh": false
             }
+        }
+        ,{
+            "path" : "pages/mine/logisticsInquiry",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "物流信息",
+                "enablePullDownRefresh": false
+            }
             
         }
     ],

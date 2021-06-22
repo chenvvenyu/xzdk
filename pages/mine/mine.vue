@@ -3,7 +3,7 @@
 		<view class="head uni-flex">
 			<view class="uni-flex-item-3">
 				<view class="fullname">{{userInfo.FullName}}</view>
-				<view class="phone">{{MobileDeal(userInfo.Mobile)}}</view>
+				<view class="phone">{{userInfo.Mobile?MobileDeal(userInfo.Mobile):'请登录'}}</view>
 				<view class="txt">个人版</view>
 			</view>
 			<view class="uni-flex-item-1" @tap="UserEdit">
@@ -51,10 +51,11 @@
 					{image:"icon-9.png",text:"已完成",type:'50'},
 				],
 				ActionList:[
-					{image:"icon-7.png",text:"我的钱包",url:"/pages/mine/wallet"},
-					{image:"icon-10.png",text:"常用地址",url:"/pages/mine/addressList?curr=0"},
-					{image:"icon-yhq.png",text:"优惠券",url:"/pages/mine/myCoupon"},
-					{image:"icon-8.png",text:"设置中心",url:"/pages/mine/config"}
+					{image:"icon-7.png",text:"我的钱包",url:"/pages/mine/wallet",login:true},
+					{image:"icon-10.png",text:"常用地址",url:"/pages/mine/addressList?curr=0",login:true},
+					{image:"icon-yhq.png",text:"优惠券",url:"/pages/mine/myCoupon",login:true},
+					{image:"icon-8.png",text:"设置中心",url:"/pages/mine/config",login:false},
+					{image:"icon-15.png",text:"查看物流",url:"/pages/mine/logisticsInquiry",login:false}
 				],
 			}
 		},
@@ -75,18 +76,40 @@
 			},
 			OrderChange(e){
 				let index = e.detail.index;
-				uni.navigateTo({url: '/pages/mine/orderList?status='+this.OrderList[index].type});
+				this.userInfo.ID?
+				uni.navigateTo({url: '/pages/mine/orderList?status='+this.OrderList[index].type}):
+				this.tologin()
 			},
 			GoOrder(){
-				uni.navigateTo({url: '/pages/mine/orderList'});
+				this.userInfo.ID?
+				uni.navigateTo({url: '/pages/mine/orderList'}):
+				this.tologin()
 			},
 			ActionChange(e){
 				let url= this.ActionList[e.detail.index].url;
-				if(url&&url!="")uni.navigateTo({url: url});
+				let loginState = this.ActionList[e.detail.index].login
+				this.userInfo.ID||!loginState?
+				uni.navigateTo({url: url}):
+				this.tologin()
 			},
 			UserEdit(){
+				this.userInfo.ID?
 				uni.navigateTo({
 					url:"/pages/mine/user"
+				}):
+				this.tologin()
+			},
+			tologin(){
+				uni.showModal({
+					title:"提示",
+					content:"请登陆",
+					success:(res)=>{
+						res.confirm?
+						uni.navigateTo({
+							url:"/pages/login/login"
+						}):
+						''
+					}
 				})
 			}
 		},

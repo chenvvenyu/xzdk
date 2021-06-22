@@ -27,6 +27,7 @@
 			<view class="cont_block">
 				<view class="cont-row">寄件方式：{{OrderData.expedited?'当日达':'次日达'}}</view>
 				<view class="cont-row">订单金额：{{OrderData.cost}} 元</view>
+				<view class="cont-row">保价费：{{OrderData.valuationAmount}} 元</view>
 				<view class="cont-row">物品分类：{{OrderData.goodsInfo}}</view>
 				<view class="cont-row">代收货款：{{OrderData.goodsPrice}} 元</view>
 				<view class="cont-row" v-if="userType===0">优&nbsp;惠&nbsp;券：{{coupon.Amount+ ' '+coupon.Name}} | <label style="border: 1px solid #888888;padding: 0px 10px;border-radius: 10px;height: 30px;font-size: 14px;margin-left: 10px;" @click="btnUse">使用</label></view>
@@ -36,7 +37,7 @@
 		</view>
 		<view class="foot-bar">
 			<view style="padding: 10px 15px;">
-				<view class="fl">{{OrderData.cost - coupon.Amount}}元</view>
+				<view class="fl">{{OrderData.cost - coupon.Amount + (OrderData.isValuation?OrderData.valuationAmount:0)}}元</view>
 				<view class="fr">
 					<button @tap="btnLoad" :disabled="btnDisable" :class="{btnDisable:btnDisable}" class="btnSubmit" type="primary">下单</button>
 				</view>
@@ -55,10 +56,10 @@
 				Agreement:false,
 				btnDisable:false,
 				OrderData:{
-					
+				
 				},
 				coupon:{Amount:0,Name:'',couponId:0},
-				totalMoney:0
+				totalMoney:0,
 			};
 		},
 		computed:{
@@ -129,7 +130,7 @@
 						// let _data = res.Data;
 						//次日达参数
 						// let {NextdayWeightPrice,NextdayPrice}=res.Data
-						let _weight = _self.OrderData.weight;//物品重量
+						let _weight = Number(_self.OrderData.weight);//物品重量
 						let _exceedWeight = _weight-_startWeight;//续重 = 物品重量 - 起始重量						
 						// if(_weight>=200) _weight=200;
 						// let _startWeight = _data.Weight;//起始重量
@@ -149,7 +150,6 @@
 						// let _exceedWeightFixedPrice1 = _data.ExceedWeightFixedPrice1;//价格区间1
 						// let _exceedWeightFixedPrice2 = _data.ExceedWeightFixedPrice2;//价格区间2
 						// let _exceedWeightFixedPrice3 = _data.ExceedWeightFixedPrice3;//价格区间3
-						
 						let _exceedPrice = 0;//续费价格
 						if(_weight > _exceedWeightRange3){//超过重量区间3
 							_self.totalMoney = _exceedWeightFixedPrice3 + _exceedPrice
@@ -264,6 +264,11 @@
 				return;
 			}
 			_self.OrderData = JSON.parse(_data);
+			_self.OrderData.valuationAmount = _self.OrderData.isValuation?
+			_self.OrderData.ValuationPrice>1000?
+			_self.OrderData.ValuationPrice*0.01:
+			5:
+			0
 			if(VerifyHelper.IsNull(_self.OrderData)) {
 				uni.navigateBack({
 					delta:1
@@ -277,7 +282,7 @@
 
 <style lang="scss">
 	page{background-color: #F5F5F5;
-		.container-warp{width: 690upx;margin: 0 30upx;
+		.container-warp{width: 690upx;margin: 0 30upx;padding-bottom: 120rpx;
 			.content-block-size{border-radius: 30upx;background-color: #FFFFFF;margin: 10px 0;
 				.cont_block{padding: 20upx 40upx;
 					.con-address{padding: 40upx 0;
@@ -302,6 +307,19 @@
 						   background-color: #3399FE;color: #FFFFFF;width: 300upx;
 				}
 				.btnDisable{background-color: #888888;}
+			}
+		}
+	}
+	.item{
+		padding:20rpx 40rpx;
+		display: flex;
+		justify-content: space-between;
+		.item_left{
+			display: flex;
+			align-items: center;
+			.item_icon{
+				width: 30rpx;
+				margin-right: 10rpx;
 			}
 		}
 	}

@@ -85,7 +85,9 @@
 								uni.setStorageSync('headurl',result2.Data.HeadUrl);
 								uni.setStorageSync('UserId',result2.Data.ID)
 								_self.showMsg("登录成功！");
-								uni.reLaunch({url:'/pages/index/index'});
+								uni.navigateBack({
+									delta:2
+								});
 							}
 							else{
 								uni.showToast({

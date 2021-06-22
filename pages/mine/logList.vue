@@ -4,6 +4,9 @@
 			<view class="title">{{item.Context}}</view>
 			<view class="time">{{item.CreateTime}}</view>
 		</view>
+		<view class="Tips" v-if="logList.length == 0">
+			暂无相关订单
+		</view>
 	</view>
 </template>
 
@@ -32,13 +35,8 @@
 			}
 		},
 		onLoad(param) {
-			let _id = param.id;
-			if(_id && _id.length>0) this.LoadData(param.id)
-			else{
-				uni.navigateBack({
-					delta:1
-				})
-			}
+			param.id? 
+			this.LoadData(param.id,'id'):''
 		}
 	}
 </script>
@@ -52,5 +50,10 @@
 			.title{font-size: 14px;}
 			.time{font-size: 13px;color: #666666;}
 		}
+	}
+	.Tips{
+		width: 100%;
+		text-align: center;
+		padding: 30vh 0;
 	}
 </style>
