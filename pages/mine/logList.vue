@@ -22,21 +22,21 @@
 			}
 		},
 		methods:{
-			LoadData(id){
+			LoadData(id,type){
 				let _self = this;
 				let _param = {
 					id:id
 				}
-				_self.Get('/api/Order/GetOrder',_param,_self.userInfo.accessToken,function(res){
-					if(res.Status && res.Data.logs && res.Data.logs.length>0) {
-						_self.logList = res.Data.logs
+				_self.Get(type?'/api/Order/GetOrderLog':'/api/Order/GetOrder',_param,_self.userInfo.accessToken,function(res){
+					if(res.Status) {
+						_self.logList = res.Data.logs?res.Data.logs:res.Data.rows
 					}
-				},'biz')
+				},type?'admin':'biz')
 			}
 		},
 		onLoad(param) {
-			param.id? 
-			this.LoadData(param.id,'id'):''
+			param.id && param.type?
+			this.LoadData(param.id,param.type):this.LoadData(param.id)
 		}
 	}
 </script>

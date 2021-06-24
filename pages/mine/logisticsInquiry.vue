@@ -21,7 +21,7 @@
 			inquiry(){
 				this.OrderNO?
 				uni.navigateTo({
-					url:`/pages/mine/logList?id=${this.OrderNO}`,
+					url:`/pages/mine/logList?id=${this.OrderNO}&&type=1`,
 				}):
 				uni.showToast({
 					title:"请输入运单号",

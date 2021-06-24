@@ -115,6 +115,7 @@
 				
 				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
 					if(res.Status && res.Data){
+						// if(_self.userType)
 						let {
 							_startWeight,
 							_startPrice,

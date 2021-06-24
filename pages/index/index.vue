@@ -155,7 +155,7 @@
 						<view class="clr"></view>
 					</view>
 					<view class="money-1">
-						<view :class="isValuation?'fl':'fl uni-text-gray'">保价费</view>
+						<view :class="isValuation?'fl':'fl uni-text-gray'">保价金额</view>
 						<view class="fr">
 							<input class="input-money" type="number" placeholder="保价金额"
 								:style="{'background-color':isValuation?'#ffffff':'#aaa','border':'1upx solid #aaa'}"
