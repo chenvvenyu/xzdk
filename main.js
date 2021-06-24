@@ -36,6 +36,7 @@ Vue.prototype.POST=function(url,data,token,callback,type='biz',content='applicat
 	else if(type=='passport') _request = test?'http://192.168.8.104:8087':'https://passport.zjxztc.com';
 	else if(type=='applets') _request = test?'http://192.168.8.104:8083':'https://applets.zjxztc.com'
 	else if(type=='repay') _request = test?'http://192.168.8.104:8089':'https://repay.zjxztc.com'
+	else if(type=='admin') _request = test?'http://192.168.8.104:8082':'https://admin.zjxztc.com'
 	uni.request({
 		url: _request+url,
 		method: 'POST',
