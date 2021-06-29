@@ -266,7 +266,9 @@
 					"goodsCount": 1, //货品件数
 					"haulDistance": 0 ,//运送距离（千米）,
 					"ValuationPrice":0,//保价金额
-					"isValuation":false//是否保价
+					"isValuation":false,//是否保价
+					"MailingRegionNo":NaN,//寄件站点编号
+					"ReceiptRegionNo":NaN//收件站点编号
 				},
 				GoodsList: ['货物', '文件', '样品', '生鲜', '服装', '首饰', '数码', '其它'],
 				GoodsIndex: 0,
@@ -609,7 +611,7 @@
 							_self.PostData.mailingProvince = res.Data.Province
 							_self.PostData.mailingCity = res.Data.City
 							_self.PostData.mailingDistrict = res.Data.District
-
+							_self.PostData.MailingRegionNo = res.Data.RegionNo
 
 							//判断收件区域
 							_self.Get('/api/Region/GetRegionByCoordinate?lng=' + _self.PostData.receiptLng +
@@ -622,7 +624,7 @@
 										_self.PostData.receiptProvince = res.Data.Province
 										_self.PostData.receiptCity = res.Data.City
 										_self.PostData.receiptDistrict = res.Data.District
-
+										_self.PostData.ReceiptRegionNo = res.Data.RegionNo
 										// 进行下一步
 										_self.ShadeShow = true;
 									} else {
