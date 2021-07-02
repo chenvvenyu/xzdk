@@ -9,7 +9,7 @@
 			<view class="item" v-for="(item,index) in OrderList" :key="index">
 				<view v-if="!IsPay(item)">
 					<view class="item-1">
-						待支付<text class="red">请及时支付</text>
+						待支付<text class="red">请及时支付{{tabIndex ===2?'差价':''}}</text>
 					</view>
 					<view class="item-2">
 						<view class="time">{{item.CreateTime}}</view>
@@ -72,6 +72,7 @@
 				PageIndex:1,
 				PageSize:20,
 				OrderList:[],
+				type:''
 			}
 		},
 		computed:{

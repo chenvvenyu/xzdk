@@ -99,10 +99,16 @@
 				let _self = this;
 				_self.Get('/api/Order/GetOrder?id='+_self.OrderID,'',_self.userInfo.accessToken,function(res){
 					if(res.Status){
+						let price = 0;
 						_self.OrderInfo = res.Data;
-						_self.price = _self.OrderInfo.coupon?
-						_self.OrderInfo.order.Cost-_self.OrderInfo.coupon.Amount+_self.OrderInfo.order.ValuationAmount:
-						_self.OrderInfo.order.Cost+_self.OrderInfo.order.ValuationAmount
+						res.Data.payLogs.forEach(item =>{
+							item.IsGoodsMoney||item.IsPay?'':
+							price = price + item.PayAmount
+						})
+						_self.price = price
+						// _self.price = _self.OrderInfo.coupon?
+						// _self.OrderInfo.order.Cost-_self.OrderInfo.coupon.Amount+_self.OrderInfo.order.ValuationAmount:
+						// _self.OrderInfo.order.Cost+_self.OrderInfo.order.ValuationAmount
 					}
 				},'biz')
 			},
