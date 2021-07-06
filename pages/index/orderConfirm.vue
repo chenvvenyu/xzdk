@@ -112,10 +112,8 @@
 				let _self = this;
 				let _url = '/api/Region/GetRegionConfig?startRegionID='+_self.OrderData.mailingRegionID+'&endRegionID='+_self.OrderData.receiptRegionID;
 				let _url2 = '/api/Region/GetMajorUserConfig/'+uni.getStorageSync('UserId')
-				
-				_self.Get(_url,'',_self.userInfo.accessToken,function(res){
+				_self.Get(this.userType === 0?_url:_url2,'',_self.userInfo.accessToken,(res)=>{
 					if(res.Status && res.Data){
-						// if(_self.userType)
 						let {
 							_startWeight,
 							_startPrice,
@@ -128,29 +126,9 @@
 							_exceedWeightFixedPrice2,
 							_exceedWeightFixedPrice3
 						}=_self.getCoefficient(res.Data)
-						// let _data = res.Data;
-						//次日达参数
-						// let {NextdayWeightPrice,NextdayPrice}=res.Data
 						let _weight = Number(_self.OrderData.weight);//物品重量
 						let _exceedWeight = _weight-_startWeight;//续重 = 物品重量 - 起始重量						
-						// if(_weight>=200) _weight=200;
-						// let _startWeight = _data.Weight;//起始重量
-						// let _startPrice = _data.Price;//起始价格
-
-						// let _exceedWeightPrice1 = _data.ExceedWeightPrice1;//续重每千克多少钱
 						
-						// let _exceedWeightPrice2 = _data.ExceedWeightPrice2;//(废弃)
-						// let _urgentPrice = _data.UrgentPrice //加急费用(废弃)
-						
-						// let _urgentCoefficient = _data.UrgentCoefficient //加急系数
-						// let _levelPriceDis = _data.PriceDis//会员折扣系数
-						
-						// let _exceedWeightRange1 = _data.ExceedWeightRange1;//重量区间1
-						// let _exceedWeightRange2 = _data.ExceedWeightRange2;//重量区间2 
-						// let _exceedWeightRange3 = _data.ExceedWeightRange3;//重量区间3
-						// let _exceedWeightFixedPrice1 = _data.ExceedWeightFixedPrice1;//价格区间1
-						// let _exceedWeightFixedPrice2 = _data.ExceedWeightFixedPrice2;//价格区间2
-						// let _exceedWeightFixedPrice3 = _data.ExceedWeightFixedPrice3;//价格区间3
 						let _exceedPrice = 0;//续费价格
 						if(_weight > _exceedWeightRange3){//超过重量区间3
 							_self.totalMoney = _exceedWeightFixedPrice3 + _exceedPrice
@@ -169,15 +147,21 @@
 							_self.totalMoney = _startPrice
 							console.log('重量'+_weight+'千克,订单价格:'+_self.totalMoney+'元')
 						}
-						_self.OrderData.startWeight=_startWeight;
+						console.log("大客户处理前:"+_self.totalMoney)
+						//大客户处理
+						if(this.userType === 1){
+							res.Data.PriceType === 1 && _self.OrderData.expedited === true&&!_self.OrderData.fareArrivePay
+							?_self.totalMoney = _self.totalMoney*res.Data.PriceDis
+							:res.Data.PriceType === 2?_self.totalMoney = res.Data.PriceFix
+							:''
+						}
+						console.log("大客户处理器后:"+_self.totalMoney)
+						_self.OrderData.startWeight = _startWeight;
 						_self.OrderData.startPrice = _startPrice;
-						_self.OrderData.exceedPrice=_exceedPrice;
-						_self.OrderData.exceedWeight= _exceedPrice == 0 ? 0 : _exceedWeight;
-						//_self.OrderData.expedited 0:今日达 1:次日达
-						// _self.totalMoney =_self.OrderData.expedited ?  _self.totalMoney*_urgentCoefficient*_levelPriceDis : _self.totalMoney*_levelPriceDis;
-						_self.totalMoney = _self.totalMoney;
+						_self.OrderData.exceedPrice = _exceedWeightPrice1;
+						_self.OrderData.exceedWeight = _exceedPrice == 0 ? 0 : _exceedWeight;
 						_self.totalMoney = _self.totalMoney.toFixed(2);
-						_self.OrderData.startWeight=_startWeight;
+						_self.OrderData.startWeight =_startWeight;
 						_self.OrderData.cost = _self.totalMoney;
 					}
 					else{
@@ -219,7 +203,7 @@
 						if (res.confirm) {
 							_self.POST('/api/Order/CreateOrder',_self.OrderData,_self.userInfo.accessToken,function(res){
 								if(res.Status){
-									if(_self.OrderData.fareArrivePay == true){
+									if(_self.OrderData.fareArrivePay == true||_self.userType === 1){
 										uni.reLaunch({
 											url:'/pages/index/loadSuccess'
 										})
@@ -266,10 +250,7 @@
 			}
 			_self.OrderData = JSON.parse(_data);
 			_self.OrderData.valuationAmount = _self.OrderData.isValuation?
-			_self.OrderData.ValuationPrice>1000?
-			_self.OrderData.ValuationPrice*0.01:
-			5:
-			0
+			_self.OrderData.ValuationPrice>1000?_self.OrderData.ValuationPrice*0.01:5:0
 			if(VerifyHelper.IsNull(_self.OrderData)) {
 				uni.navigateBack({
 					delta:1

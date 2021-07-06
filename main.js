@@ -5,7 +5,8 @@ import store from './store'
 Vue.config.productionTip = false
 
 App.mpType = 'app'
-
+//是否为测试
+let test = true
 //时间字符串转yyyy-mm-dd hh:mm:ss
 Vue.prototype.stringToDateTime = function(str,year="-",month="-",day="") {
 	if (str == null || str.length < 19) return "";
@@ -29,9 +30,7 @@ Vue.prototype.showMsg= (title, duration=2000, mask=false, icon='none')=>{
 }
 
 Vue.prototype.POST=function(url,data,token,callback,type='biz',content='application/json'){
-	//是否为测试
-	let test = false
-	let _request = test?'http://192.168.8.104:8085':'https://biz.zjxztc.com',t = this;
+	let _request = this.test?'http://192.168.8.104:8085':'https://biz.zjxztc.com',t = this;
 	if(type=='auth') _request = test?'http://192.168.8.104:8084':'https://auth.zjxztc.com';
 	else if(type=='passport') _request = test?'http://192.168.8.104:8087':'https://passport.zjxztc.com';
 	else if(type=='applets') _request = test?'http://192.168.8.104:8083':'https://applets.zjxztc.com'
@@ -110,9 +109,7 @@ Vue.prototype.POST=function(url,data,token,callback,type='biz',content='applicat
 }
 
 Vue.prototype.Get=function(url,data,token,callback,type='biz',content='application/json',async=false){
-	//是否为测试
-	let test = false
-	let _request = test?'http://192.168.8.104:8085':'https://biz.zjxztc.com',t = this;
+	let _request = this.test?'http://192.168.8.104:8085':'https://biz.zjxztc.com',t = this;
 	if(type=='auth') _request = test?'http://192.168.8.104:8084':'https://auth.zjxztc.com';
 	else if(type=='passport') _request = test?'http://192.168.8.104:8087':'https://passport.zjxztc.com';
 	else if(type=='applets') _request = test?'http://192.168.8.104:8083':'https://applets.zjxztc.com'
@@ -187,9 +184,8 @@ Vue.prototype.Get=function(url,data,token,callback,type='biz',content='applicati
 }
 
 Vue.prototype.RefreshToken=function(accessToken,refreshToken,userInfo){
-	let test = false
 	uni.request({
-		url: test?'http://192.168.8.104:8083/api/Auth/RefreshToken':'https://auth.zjxztc.com/api/Auth/RefreshToken',
+		url: this.test?'http://192.168.8.104:8083/api/Auth/RefreshToken':'https://auth.zjxztc.com/api/Auth/RefreshToken',
 		method: 'POST',
 		header: {'content-type': 'application/json'},
 		data: data,
