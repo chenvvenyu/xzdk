@@ -213,7 +213,10 @@
 											url:'/pages/index/orderPay?orderid='+res.Data.OrderID
 										})
 									}
+								}else{
+									_self.showMsg(`${res.Message}`);
 								}
+								uni.removeStorageSync('express')
 							},'biz')
 						} 
 					}
@@ -249,6 +252,7 @@
 				return;
 			}
 			_self.OrderData = JSON.parse(_data);
+			console.log(_self.OrderData)
 			_self.OrderData.valuationAmount = _self.OrderData.isValuation?
 			_self.OrderData.ValuationPrice>1000?_self.OrderData.ValuationPrice*0.01:5:0
 			if(VerifyHelper.IsNull(_self.OrderData)) {

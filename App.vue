@@ -6,13 +6,19 @@
 	} from 'vuex';
 	import VerifyHelper from "@/common/verify.js";
 	export default {
-		onLaunch: function() {
+		onLaunch: function(params) {
+			if(params.query.scancode_time){
+				let data = decodeURIComponent(params.query.q);
+				let url = /https\:\/\/www\.zjxztc\.com\/express\//
+				let express = data.replace(url,'')
+				uni.setStorageSync('express',express)
+			}
 			this.GetUserInfo();
 			this.getMenuInfo();
 			this.getAppState();
 		},
-		onShow: function() {
-
+		onShow: function(params) {
+			console.log(params)
 		},
 		onHide: function() {
 
@@ -142,7 +148,7 @@
 						content: '当前微信版本过低，无法使用更新小程序版本功能，请升级到最新微信版本后重试。'
 					})
 				}
-			},
+			}
 		}
 
 	}

@@ -16,6 +16,7 @@
 		<view class="content-block-size">
 			<view class="cont_block">
 				<view class="con-address">
+					<view v-if="PostData.isPlaceOrder">运单号:{{PostData.expressNO}}</view>
 					<view class="address-item">
 						<view class="uni-flex uni-row">
 							<view class="tag">寄</view>
@@ -268,7 +269,9 @@
 					"ValuationPrice":0,//保价金额
 					"isValuation":false,//是否保价
 					"MailingRegionNo":NaN,//寄件站点编号
-					"ReceiptRegionNo":NaN//收件站点编号
+					"ReceiptRegionNo":NaN,//收件站点编号
+					"expressNO":0,
+					"isPlaceOrder": false,
 				},
 				GoodsList: ['货物', '文件', '样品', '生鲜', '服装', '首饰', '数码', '其它'],
 				GoodsIndex: 0,
@@ -1122,7 +1125,6 @@
 					_self.PostData.receiptLat, _self.PostData.receiptLng)
 
 				uni.navigateTo({
-
 					url: '/pages/index/orderConfirm?data=' + encodeURIComponent(JSON.stringify(_self.PostData))
 				})
 			},
@@ -1150,6 +1152,12 @@
 			}
 			this.getData();
 			_self.GetDefaultContact();
+		},
+		onShow(){
+			let expressNO = uni.getStorageSync('express')
+			console.log(expressNO)
+			this.PostData.expressNO = expressNO?expressNO:0;
+			this.PostData.isPlaceOrder = expressNO?true:false;
 		},
 		onShareAppMessage(res) {
 			let _self = this;

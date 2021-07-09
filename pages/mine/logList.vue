@@ -27,7 +27,7 @@
 				let _param = {
 					id:id
 				}
-				_self.Get(type?'/api/Order/GetOrderLog':'/api/Order/GetOrder',_param,_self.userInfo.accessToken,function(res){
+				_self.Get(type?'/api/Order/GetOrderLog':'/api/Order/GetOrder',_param,type?'':_self.userInfo.accessToken,function(res){
 					if(res.Status) {
 						_self.logList = res.Data.logs?res.Data.logs:res.Data.rows
 					}
@@ -35,8 +35,7 @@
 			}
 		},
 		onLoad(param) {
-			param.id && param.type?
-			this.LoadData(param.id,param.type):this.LoadData(param.id)
+			this.LoadData(param.id,param.type)
 		}
 	}
 </script>
