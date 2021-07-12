@@ -11,6 +11,7 @@
 				let data = decodeURIComponent(params.query.q);
 				let url = /https\:\/\/www\.zjxztc\.com\/express\//
 				let express = data.replace(url,'')
+				console.log(express)
 				uni.setStorageSync('express',express)
 			}
 			this.GetUserInfo();

@@ -37,7 +37,7 @@
 		</view>
 		<view class="foot-bar">
 			<view style="padding: 10px 15px;">
-				<view class="fl">{{OrderData.cost - coupon.Amount + (OrderData.isValuation?OrderData.valuationAmount:0)}}元</view>
+				<view class="fl">{{OrderData.cost - coupon.Amount - OrderData.DiscountAmount + (OrderData.isValuation?OrderData.valuationAmount:0)}}元</view>
 				<view class="fr">
 					<button @tap="btnLoad" :disabled="btnDisable" :class="{btnDisable:btnDisable}" class="btnSubmit" type="primary">下单</button>
 				</view>
@@ -151,11 +151,12 @@
 						//大客户处理
 						if(this.userType === 1){
 							res.Data.PriceType === 1 && _self.OrderData.expedited === true&&!_self.OrderData.fareArrivePay
-							?_self.totalMoney = _self.totalMoney*res.Data.PriceDis
+							?_self.OrderData.DiscountAmount = _self.totalMoney*(1-res.Data.PriceDis)
 							:res.Data.PriceType === 2?_self.totalMoney = res.Data.PriceFix
 							:''
 						}
-						console.log("大客户处理器后:"+_self.totalMoney)
+						console.log("大客户折扣价:"+_self.OrderData.DiscountAmount)
+						_self.OrderData.PriceDis = res.Data.PriceDis;
 						_self.OrderData.startWeight = _startWeight;
 						_self.OrderData.startPrice = _startPrice;
 						_self.OrderData.exceedPrice = _exceedWeightPrice1;

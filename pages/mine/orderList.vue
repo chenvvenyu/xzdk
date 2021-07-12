@@ -7,9 +7,9 @@
 		</scroll-view>
 		<view class="list">
 			<view class="item" v-for="(item,index) in OrderList" :key="index">
-				<view v-if="!IsPay(item)">
+				<view v-if="!IsPay(item)&&tabIndex <3 ">
 					<view class="item-1">
-						待支付<text class="red">请及时支付{{tabIndex ===2?'差价':''}}</text>
+						待支付<text class="red">请及时支付{{tabIndex ===2?'	差价':''}}</text>
 					</view>
 					<view class="item-2">
 						<view class="time">{{item.CreateTime}}</view>

@@ -272,6 +272,8 @@
 					"ReceiptRegionNo":NaN,//收件站点编号
 					"expressNO":0,
 					"isPlaceOrder": false,
+					DiscountAmount:0,//大客户折扣价
+					PriceDis:1,//折扣比例
 				},
 				GoodsList: ['货物', '文件', '样品', '生鲜', '服装', '首饰', '数码', '其它'],
 				GoodsIndex: 0,
